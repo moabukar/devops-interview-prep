@@ -37,7 +37,7 @@ class InterviewQuestionBank:
             return
         
         try:
-            with open(self.questions_file, 'r') as f:
+            with open(self.questions_file, 'r', encoding='utf-8') as f:
                 data = json.load(f)
             
             self.questions = []

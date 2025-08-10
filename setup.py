@@ -1,10 +1,17 @@
 from setuptools import setup, find_packages
 
-with open("README.md", "r", encoding="utf-8") as fh:
-    long_description = fh.read()
+# Handle README gracefully for Docker builds
+try:
+    with open("README.md", "r", encoding="utf-8") as fh:
+        long_description = fh.read()
+except FileNotFoundError:
+    long_description = "Interactive DevOps Interview Preparation CLI Tool"
 
-with open("requirements.txt", "r", encoding="utf-8") as fh:
-    requirements = [line.strip() for line in fh if line.strip() and not line.startswith("#")]
+try:
+    with open("requirements.txt", "r", encoding="utf-8") as fh:
+        requirements = [line.strip() for line in fh if line.strip() and not line.startswith("#")]
+except FileNotFoundError:
+    requirements = ["click>=8.0.0", "colorama>=0.4.4"]
 
 setup(
     name="devops-interview-prep",
@@ -36,10 +43,6 @@ setup(
         "console_scripts": [
             "devops-ip=devops_ip.cli:cli",
         ],
-    },
-    include_package_data=True,
-    package_data={
-        "devops_ip": ["questions/*.json"],
     },
     keywords="devops, interview, preparation, cli, aws, kubernetes, docker, terraform, cicd",
 )

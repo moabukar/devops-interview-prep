@@ -1,0 +1,6 @@
+include README.md
+include LICENSE
+include requirements.txt
+recursive-include devops_ip *.json
+recursive-include questions *.json
+include questions/interview_questions.json
