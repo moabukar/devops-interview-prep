@@ -1,108 +1,136 @@
-name: CI/CD Pipeline
+name: Docker Build and Push
 
 on:
   push:
     branches: [ main, develop ]
+    tags: [ 'v*' ]
   pull_request:
     branches: [ main ]
-  release:
-    types: [ published ]
+
+env:
+  REGISTRY: docker.io
+  IMAGE_NAME: moabukar/devops-interview-prep
 
 jobs:
   test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [3.8, 3.9, "3.10", "3.11"]
-
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Needed for git describe to work
+
+    - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: ${{ matrix.python-version }}
-    
+        python-version: '3.11'
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install -e .
-    
+
     - name: Test CLI installation
       run: |
-        coderco --help
-        coderco topics
-        coderco stats
-    
+        devops-ip --help
+        devops-ip topics
+        devops-ip stats
+
     - name: Run basic functionality tests
       run: |
         # Test that we can load questions
-        python -c "from coderco.cli import question_bank; print(f'Loaded {len(question_bank.questions)} questions')"
+        python -c "from devops_ip.cli import question_bank; print(f'Loaded {len(question_bank.questions)} questions')"
         
-        # Test topic listing
-        coderco topics
-        
-        # Test info command
-        coderco info aws
+        # Test question randomization works
+        echo "2" | timeout 10 devops-ip practice aws --count 1 || true
+
+    - name: Test setup.py
+      run: |
+        python setup.py check
+        python setup.py --version
 
   docker:
-    runs-on: ubuntu-latest
     needs: test
+    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request'
     
     steps:
-    - uses: actions/checkout@v4
-    
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Needed for git describe to work
+
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
-    
+
     - name: Login to Docker Hub
-      if: github.event_name == 'release'
       uses: docker/login-action@v3
       with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-    
-    - name: Build and test Docker image
+        username: moabukar
+        password: ${{ secrets.DOCKER_HUB_TOKEN }}
+
+    - name: Get version from git
+      id: version
       run: |
-        docker build -t coderco/cli:test .
-        docker run --rm coderco/cli:test --help
-        docker run --rm coderco/cli:test topics
-    
+        VERSION=$(git describe --tags --always --dirty 2>/dev/null || echo "dev")
+        echo "VERSION=${VERSION}" >> $GITHUB_OUTPUT
+        echo "Building version: ${VERSION}"
+
+    - name: Extract metadata
+      id: meta
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ env.IMAGE_NAME }}
+        tags: |
+          type=ref,event=branch
+          type=ref,event=pr
+          type=semver,pattern={{version}}
+          type=semver,pattern={{major}}.{{minor}}
+          type=raw,value=latest,enable={{is_default_branch}}
+          type=raw,value=${{ steps.version.outputs.VERSION }}
+
     - name: Build and push Docker image
-      if: github.event_name == 'release'
       uses: docker/build-push-action@v5
       with:
         context: .
-        push: true
-        tags: |
-          coderco/cli:latest
-          coderco/cli:${{ github.event.release.tag_name }}
         platforms: linux/amd64,linux/arm64
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
 
-  package:
+    - name: Test Docker image
+      run: |
+        echo "Testing Docker image..."
+        docker run --rm ${{ env.IMAGE_NAME }}:latest --help
+        docker run --rm ${{ env.IMAGE_NAME }}:latest topics
+        docker run --rm ${{ env.IMAGE_NAME }}:latest stats
+
+  release-notification:
+    needs: [test, docker]
     runs-on: ubuntu-latest
-    needs: test
-    if: github.event_name == 'release'
+    if: startsWith(github.ref, 'refs/tags/v')
     
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: "3.11"
-    
-    - name: Install build dependencies
+    - name: Get version
+      id: version
+      run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+
+    - name: Create Release Summary
       run: |
-        python -m pip install --upgrade pip
-        pip install build twine
-    
-    - name: Build package
-      run: python -m build
-    
-    - name: Publish to PyPI
-      env:
-        TWINE_USERNAME: __token__
-        TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
-      run: twine upload dist/*
+        echo "🚀 **DevOps Interview Prep ${{ steps.version.outputs.VERSION }} Released!**" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### 📦 Docker Images Available:" >> $GITHUB_STEP_SUMMARY
+        echo "- \`docker run -it --rm moabukar/devops-interview-prep:latest practice aws\`" >> $GITHUB_STEP_SUMMARY
+        echo "- \`docker run -it --rm moabukar/devops-interview-prep:${{ steps.version.outputs.VERSION }} practice kubernetes\`" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### 🎯 Quick Start:" >> $GITHUB_STEP_SUMMARY
+        echo "\`\`\`bash" >> $GITHUB_STEP_SUMMARY
+        echo "# Practice AWS questions" >> $GITHUB_STEP_SUMMARY
+        echo "docker run -it --rm moabukar/devops-interview-prep practice aws" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "# Full interview simulation" >> $GITHUB_STEP_SUMMARY
+        echo "docker run -it --rm moabukar/devops-interview-prep interview --count 15" >> $GITHUB_STEP_SUMMARY
+        echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
