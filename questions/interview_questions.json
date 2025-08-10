@@ -1273,6 +1273,559 @@
         "correct_answer": 2,
         "explanation": "Azure App Service hosts complete web applications, while Azure Functions is a serverless compute service for event-driven, short-running code execution.",
         "scenario": "You need to choose between hosting a full web application vs implementing specific business logic triggered by events."
+      },
+      {
+        "id": "aws-011",
+        "topic": "aws",
+        "difficulty": "medium",
+        "question": "What services can help minimize a DDoS attack on AWS?",
+        "options": [
+          "Only EC2 instances",
+          "AWS Shield, CloudFront, and WAF",
+          "RDS and Lambda only",
+          "S3 and ECS"
+        ],
+        "correct_answer": 2,
+        "explanation": "AWS Shield provides DDoS protection, CloudFront distributes traffic globally, and WAF filters malicious requests before they reach your application.",
+        "scenario": "Your e-commerce website is experiencing a large-scale DDoS attack affecting customer access."
+      },
+      {
+        "id": "aws-012",
+        "topic": "aws",
+        "difficulty": "hard",
+        "question": "In a VPC with private and public subnets, where should database servers ideally be launched?",
+        "options": [
+          "Public subnets for better performance",
+          "Private subnets with no internet access",
+          "It doesn't matter which subnet",
+          "Split between both subnet types"
+        ],
+        "correct_answer": 2,
+        "explanation": "Database servers should be in private subnets to prevent direct internet access, enhancing security. They can communicate with application servers through internal networking.",
+        "scenario": "You're designing a secure 3-tier architecture for a financial application with strict security requirements."
+      },
+      {
+        "id": "aws-013",
+        "topic": "aws",
+        "difficulty": "medium",
+        "question": "Your web application has the highest traffic on Wednesdays and Fridays between 9 AM and 7 PM. What's the best scaling solution?",
+        "options": [
+          "Manual scaling during those times",
+          "Scheduled Auto Scaling with predictive scaling",
+          "Always run maximum capacity",
+          "Use only reactive scaling"
+        ],
+        "correct_answer": 2,
+        "explanation": "Scheduled Auto Scaling can proactively scale based on predictable patterns, combined with predictive scaling for optimal resource management and cost efficiency.",
+        "scenario": "You want to optimize costs while ensuring performance during known traffic peaks."
+      },
+      {
+        "id": "aws-014",
+        "topic": "aws",
+        "difficulty": "easy",
+        "question": "What are the different types of load balancers in AWS?",
+        "options": [
+          "Only Application Load Balancer",
+          "Application, Network, and Gateway Load Balancers",
+          "Only Classic Load Balancer",
+          "Internal and External Load Balancers"
+        ],
+        "correct_answer": 2,
+        "explanation": "AWS offers Application Load Balancer (Layer 7), Network Load Balancer (Layer 4), and Gateway Load Balancer for different use cases and protocols."
+      },
+      {
+        "id": "kubernetes-011",
+        "topic": "kubernetes",
+        "difficulty": "medium",
+        "question": "What are StatefulSets used for in Kubernetes?",
+        "options": [
+          "Running stateless applications only",
+          "Managing stateful applications with persistent storage and stable network identities",
+          "Load balancing between pods",
+          "Creating temporary containers"
+        ],
+        "correct_answer": 2,
+        "explanation": "StatefulSets provide stable network identities, ordered deployment/scaling, and persistent storage for stateful applications like databases.",
+        "scenario": "You need to deploy a MongoDB cluster in Kubernetes with persistent data and stable hostnames."
+      },
+      {
+        "id": "kubernetes-012",
+        "topic": "kubernetes",
+        "difficulty": "hard",
+        "question": "How do you restrict pod-to-pod communication in a cluster?",
+        "options": [
+          "Use firewalls on each node",
+          "Implement Network Policies",
+          "Separate pods into different namespaces only",
+          "Use different Docker networks"
+        ],
+        "correct_answer": 2,
+        "explanation": "Network Policies define rules for how pods can communicate with each other and other network endpoints, providing microsegmentation within the cluster.",
+        "scenario": "You need to ensure that only frontend pods can communicate with backend pods in a multi-tenant environment."
+      },
+      {
+        "id": "kubernetes-013",
+        "topic": "kubernetes",
+        "difficulty": "medium",
+        "question": "What is the role of the kube-apiserver?",
+        "options": [
+          "Running container workloads",
+          "Central management component that exposes the Kubernetes API",
+          "Storing container images",
+          "Managing network routing"
+        ],
+        "correct_answer": 2,
+        "explanation": "The kube-apiserver is the central management component that validates and configures API objects, serving as the frontend for the Kubernetes control plane.",
+        "scenario": "You're troubleshooting cluster issues and need to understand which component handles API requests."
+      },
+      {
+        "id": "kubernetes-014",
+        "topic": "kubernetes",
+        "difficulty": "hard",
+        "question": "What is the role of ETCD in Kubernetes?",
+        "options": [
+          "Container runtime engine",
+          "Distributed key-value store that holds cluster state",
+          "Load balancer for services",
+          "Image registry"
+        ],
+        "correct_answer": 2,
+        "explanation": "ETCD is a distributed key-value store that stores all cluster data, including configuration, state, and metadata. It's the single source of truth for the cluster.",
+        "scenario": "Your cluster is experiencing data consistency issues and you need to understand the storage backend."
+      },
+      {
+        "id": "kubernetes-015",
+        "topic": "kubernetes",
+        "difficulty": "medium",
+        "question": "What is an Ingress controller?",
+        "options": [
+          "A type of pod",
+          "A component that manages external access to services via HTTP/HTTPS rules",
+          "A storage volume",
+          "A network interface"
+        ],
+        "correct_answer": 2,
+        "explanation": "An Ingress controller implements Ingress rules to route external HTTP/HTTPS traffic to services based on hostnames, paths, and other criteria.",
+        "scenario": "You need to expose multiple services with custom domains and SSL certificates."
+      },
+      {
+        "id": "docker-010",
+        "topic": "docker",
+        "difficulty": "medium",
+        "question": "What is the difference between 'expose' and 'publish' in Docker?",
+        "options": [
+          "They do exactly the same thing",
+          "EXPOSE documents ports, PUBLISH maps ports to host",
+          "EXPOSE is for UDP, PUBLISH is for TCP",
+          "EXPOSE is deprecated, use PUBLISH"
+        ],
+        "correct_answer": 2,
+        "explanation": "EXPOSE in Dockerfile documents which ports the container uses but doesn't publish them. The -p flag (publish) actually maps container ports to host ports.",
+        "scenario": "You're writing a Dockerfile and need to understand how to properly expose and publish ports."
+      },
+      {
+        "id": "docker-011",
+        "topic": "docker",
+        "difficulty": "hard",
+        "question": "When you limit memory for a container, does it reserve that memory?",
+        "options": [
+          "Yes, it reserves the exact amount",
+          "No, it sets a maximum limit but doesn't reserve",
+          "Only on Windows containers",
+          "Depends on the base image"
+        ],
+        "correct_answer": 2,
+        "explanation": "Memory limits set a maximum boundary but don't reserve memory. The container can use less memory, and the OS can allocate that memory to other processes.",
+        "scenario": "You're planning resource allocation for multiple containers on the same host."
+      },
+      {
+        "id": "docker-012",
+        "topic": "docker",
+        "difficulty": "medium",
+        "question": "What is an orphaned volume in Docker?",
+        "options": [
+          "A volume attached to multiple containers",
+          "A volume not associated with any container",
+          "A volume with incorrect permissions",
+          "A volume stored on remote storage"
+        ],
+        "correct_answer": 2,
+        "explanation": "An orphaned volume is one that's no longer associated with any container, often left behind when containers are removed without cleaning up volumes.",
+        "scenario": "Your Docker host is running out of disk space and you need to clean up unused resources."
+      },
+      {
+        "id": "docker-013",
+        "topic": "docker",
+        "difficulty": "easy",
+        "question": "When do you use Docker Compose vs Docker Swarm vs Kubernetes?",
+        "options": [
+          "They're all the same tool",
+          "Compose for dev/single host, Swarm for simple clusters, K8s for complex orchestration",
+          "Always use Kubernetes",
+          "Compose for production only"
+        ],
+        "correct_answer": 2,
+        "explanation": "Docker Compose is for development and single-host deployments, Swarm for simple multi-host clustering, and Kubernetes for complex production orchestration.",
+        "scenario": "You need to choose the right containerization strategy for different environments."
+      },
+      {
+        "id": "linux-014",
+        "topic": "linux",
+        "difficulty": "medium",
+        "question": "What are namespaces and cgroups in Linux?",
+        "options": [
+          "File organization tools",
+          "Process isolation (namespaces) and resource limiting (cgroups) mechanisms",
+          "Network configuration tools",
+          "Package management systems"
+        ],
+        "correct_answer": 2,
+        "explanation": "Namespaces provide process isolation (PID, network, mount, etc.) while cgroups control and limit resource usage (CPU, memory, I/O) for process groups.",
+        "scenario": "You're implementing container technology and need to understand the underlying Linux mechanisms."
+      },
+      {
+        "id": "linux-015",
+        "topic": "linux",
+        "difficulty": "hard",
+        "question": "A process on the system can no longer log files. How would you debug this?",
+        "options": [
+          "Just restart the process",
+          "Check disk space, file permissions, open file descriptors, and filesystem health",
+          "Only check application logs",
+          "Reboot the server"
+        ],
+        "correct_answer": 2,
+        "explanation": "Debug by checking: disk space (df -h), file permissions (ls -la), open file descriptors (lsof), inode usage (df -i), and filesystem errors (dmesg).",
+        "scenario": "A critical application suddenly stopped writing logs, affecting monitoring and debugging capabilities."
+      },
+      {
+        "id": "linux-016",
+        "topic": "linux",
+        "difficulty": "medium",
+        "question": "What is LILO in Linux?",
+        "options": [
+          "A file compression tool",
+          "Linux Loader - a boot loader for Linux systems",
+          "A network protocol",
+          "A process scheduler"
+        ],
+        "correct_answer": 2,
+        "explanation": "LILO (Linux Loader) is a boot loader that can boot Linux and other operating systems. It's largely been replaced by GRUB in modern systems.",
+        "scenario": "You're working with legacy systems and encounter LILO configuration during boot troubleshooting."
+      },
+      {
+        "id": "linux-017",
+        "topic": "linux",
+        "difficulty": "hard",
+        "question": "What happens when you type 'ls' into a terminal at the kernel level?",
+        "options": [
+          "Files are displayed immediately",
+          "Shell forks, exec system call loads ls binary, kernel schedules process",
+          "Only filesystem is accessed",
+          "Network request is made"
+        ],
+        "correct_answer": 2,
+        "explanation": "The shell forks creating a child process, uses exec() system call to load ls binary, kernel schedules the process, ls makes system calls to read directory, returns data to shell.",
+        "scenario": "Classic deep-dive interview question testing understanding of process creation and system calls."
+      },
+      {
+        "id": "networking-009",
+        "topic": "networking",
+        "difficulty": "medium",
+        "question": "What is CIDR and why is it used?",
+        "options": [
+          "A network protocol",
+          "Classless Inter-Domain Routing for efficient IP address allocation",
+          "A type of firewall",
+          "A DNS record type"
+        ],
+        "correct_answer": 2,
+        "explanation": "CIDR notation (e.g., 192.168.1.0/24) allows flexible subnet sizing beyond traditional class boundaries, enabling more efficient IP address allocation and routing.",
+        "scenario": "You're designing network subnets for a cloud infrastructure and need to optimize IP address usage."
+      },
+      {
+        "id": "networking-010",
+        "topic": "networking",
+        "difficulty": "hard",
+        "question": "Data transfer between two hosts is extremely slow. How do you troubleshoot?",
+        "options": [
+          "Only restart the network interface",
+          "Check bandwidth utilization, latency, packet loss, MTU, and routing paths",
+          "Replace all network equipment",
+          "Only check DNS resolution"
+        ],
+        "correct_answer": 2,
+        "explanation": "Systematic approach: measure bandwidth (iperf), check latency (ping), packet loss (mtr), MTU size (ping with -M do), routing (traceroute), and network utilization.",
+        "scenario": "Large file transfers between data centers are taking much longer than expected."
+      },
+      {
+        "id": "networking-011",
+        "topic": "networking",
+        "difficulty": "medium",
+        "question": "What is the difference between a switch and a hub?",
+        "options": [
+          "No difference, they're identical",
+          "Switch learns MAC addresses and creates collision domains, hub broadcasts to all ports",
+          "Hub is faster than switch",
+          "Switch only works with wireless connections"
+        ],
+        "correct_answer": 2,
+        "explanation": "Switches learn MAC addresses, create separate collision domains per port, and forward frames only to intended recipients. Hubs broadcast to all ports creating one large collision domain.",
+        "scenario": "You're upgrading legacy network infrastructure and need to explain the benefits of modern switching."
+      },
+      {
+        "id": "networking-012",
+        "topic": "networking",
+        "difficulty": "easy",
+        "question": "What is ingress and egress traffic?",
+        "options": [
+          "Incoming traffic (ingress) and outgoing traffic (egress)",
+          "Only internal network traffic",
+          "Error types in networking",
+          "Different cable types"
+        ],
+        "correct_answer": 1,
+        "explanation": "Ingress refers to traffic entering a network or system, while egress refers to traffic leaving. Important for firewall rules, billing, and security policies."
+      },
+      {
+        "id": "git-009",
+        "topic": "git",
+        "difficulty": "easy",
+        "question": "What is the difference between 'git pull' and 'git fetch'?",
+        "options": [
+          "They do exactly the same thing",
+          "Pull downloads and merges, fetch only downloads",
+          "Fetch is faster than pull",
+          "Pull works offline, fetch needs internet"
+        ],
+        "correct_answer": 2,
+        "explanation": "Git fetch downloads changes from remote repository without merging them. Git pull combines fetch and merge operations in one command.",
+        "scenario": "You want to see what changes are available on the remote branch before integrating them into your local branch."
+      },
+      {
+        "id": "git-010",
+        "topic": "git",
+        "difficulty": "medium",
+        "question": "What is Git stash and when do you use it?",
+        "options": [
+          "Permanent storage for commits",
+          "Temporary storage for uncommitted changes when switching branches",
+          "Backup of the entire repository",
+          "Version control for binary files"
+        ],
+        "correct_answer": 2,
+        "explanation": "Git stash temporarily saves uncommitted changes, allowing you to switch branches or pull updates, then reapply the changes later with 'git stash pop'.",
+        "scenario": "You're working on a feature but need to quickly switch branches to fix a bug without committing incomplete work."
+      },
+      {
+        "id": "git-011",
+        "topic": "git",
+        "difficulty": "hard",
+        "question": "How do you undo a git rebase?",
+        "options": [
+          "It's impossible to undo a rebase",
+          "Use git reflog to find pre-rebase commit and reset to it",
+          "Delete the repository and clone again",
+          "Use git reverse"
+        ],
+        "correct_answer": 2,
+        "explanation": "Use 'git reflog' to find the commit hash before the rebase, then 'git reset --hard <hash>' to return to the pre-rebase state. Reflog tracks HEAD movements.",
+        "scenario": "You performed an interactive rebase that went wrong and need to restore the branch to its previous state."
+      },
+      {
+        "id": "terraform-009",
+        "topic": "terraform",
+        "difficulty": "medium",
+        "question": "What is Terragrunt and why would you use it?",
+        "options": [
+          "A replacement for Terraform",
+          "A wrapper that provides extra tools for working with Terraform",
+          "A cloud provider like AWS",
+          "A monitoring tool for infrastructure"
+        ],
+        "correct_answer": 2,
+        "explanation": "Terragrunt is a thin wrapper around Terraform that provides extra tools for keeping configurations DRY, managing remote state, and working with multiple environments.",
+        "scenario": "You have multiple environments with similar Terraform configurations and want to reduce code duplication."
+      },
+      {
+        "id": "terraform-010",
+        "topic": "terraform",
+        "difficulty": "hard",
+        "question": "How does Terraform state file locking work?",
+        "options": [
+          "State files are never locked",
+          "Prevents concurrent operations by acquiring locks on remote state storage",
+          "Only works with local state files",
+          "Locking is only for read operations"
+        ],
+        "correct_answer": 2,
+        "explanation": "Terraform uses state locking to prevent concurrent operations that could corrupt the state. Remote backends like S3 with DynamoDB provide distributed locking mechanisms.",
+        "scenario": "Multiple team members are working on the same infrastructure and you need to prevent conflicting changes."
+      },
+      {
+        "id": "terraform-011",
+        "topic": "terraform",
+        "difficulty": "medium",
+        "question": "What is a null resource in Terraform?",
+        "options": [
+          "A resource that doesn't exist",
+          "A resource that does nothing but can trigger provisioners or local-exec",
+          "A deleted resource",
+          "An error in Terraform configuration"
+        ],
+        "correct_answer": 2,
+        "explanation": "The null_resource doesn't create actual infrastructure but can run provisioners, execute local commands, or create dependencies between resources.",
+        "scenario": "You need to run a script after creating infrastructure but don't have a specific resource to attach it to."
+      },
+      {
+        "id": "cicd-010",
+        "topic": "cicd",
+        "difficulty": "medium",
+        "question": "What is a rolling deployment?",
+        "options": [
+          "Deploying at specific times only",
+          "Gradually replacing instances with new versions while maintaining service availability",
+          "Rolling back failed deployments",
+          "Deploying to multiple environments simultaneously"
+        ],
+        "correct_answer": 2,
+        "explanation": "Rolling deployment gradually replaces old instances with new ones, maintaining service availability throughout the process. Only a subset of instances are updated at a time.",
+        "scenario": "You need to update your application without any downtime while maintaining capacity."
+      },
+      {
+        "id": "cicd-011",
+        "topic": "cicd",
+        "difficulty": "hard",
+        "question": "How would you implement feature flags in a CI/CD pipeline?",
+        "options": [
+          "Feature flags aren't related to CI/CD",
+          "Deploy code with flags off, enable via configuration management",
+          "Only use feature flags in development",
+          "Feature flags replace the need for CI/CD"
+        ],
+        "correct_answer": 2,
+        "explanation": "Deploy code with feature flags disabled by default, then use configuration management or feature flag services to enable features gradually without new deployments.",
+        "scenario": "You want to deploy new features to production but control their release to users independently of code deployment."
+      },
+      {
+        "id": "security-004",
+        "topic": "security",
+        "difficulty": "medium",
+        "question": "What is the difference between authentication and authorization?",
+        "options": [
+          "They are the same concept",
+          "Authentication verifies identity, authorization determines permissions",
+          "Authorization happens before authentication",
+          "Authentication is only for users, authorization is for systems"
+        ],
+        "correct_answer": 2,
+        "explanation": "Authentication verifies 'who you are' (identity verification), while authorization determines 'what you can do' (permission checking) after authentication is successful.",
+        "scenario": "You're designing access controls for a multi-tenant application."
+      },
+      {
+        "id": "security-005",
+        "topic": "security",
+        "difficulty": "hard",
+        "question": "How do you implement zero-trust security in a microservices architecture?",
+        "options": [
+          "Trust all internal network traffic",
+          "Verify every request with mTLS, service mesh, and fine-grained policies",
+          "Only secure external APIs",
+          "Use VPNs for all connections"
+        ],
+        "correct_answer": 2,
+        "explanation": "Zero-trust requires verifying every request: implement mTLS for service-to-service communication, use service mesh for policy enforcement, and apply principle of least privilege.",
+        "scenario": "You need to secure a microservices architecture where services can't trust the network or other services by default."
+      },
+      {
+        "id": "monitoring-004",
+        "topic": "monitoring",
+        "difficulty": "medium",
+        "question": "What is the difference between SLI, SLO, and SLA?",
+        "options": [
+          "They are all the same thing",
+          "SLI measures service level, SLO sets objectives, SLA is customer agreement",
+          "Only SLA is important for business",
+          "SLI and SLO are only for internal use"
+        ],
+        "correct_answer": 2,
+        "explanation": "SLI (Service Level Indicator) measures actual performance, SLO (Service Level Objective) defines target reliability, SLA (Service Level Agreement) is the customer-facing commitment.",
+        "scenario": "You're defining reliability targets for a customer-facing API service."
+      },
+      {
+        "id": "monitoring-005",
+        "topic": "monitoring",
+        "difficulty": "hard",
+        "question": "How do you monitor a serverless application effectively?",
+        "options": [
+          "Traditional server monitoring tools work fine",
+          "Use distributed tracing, function-level metrics, and log aggregation",
+          "Monitoring isn't needed for serverless",
+          "Only monitor the cloud provider's metrics"
+        ],
+        "correct_answer": 2,
+        "explanation": "Serverless monitoring requires distributed tracing for request flows, function-level metrics (duration, errors, throttles), and centralized logging since you can't access underlying infrastructure.",
+        "scenario": "Your Lambda-based application has intermittent performance issues that are difficult to diagnose."
+      },
+      {
+        "id": "ansible-004",
+        "topic": "ansible",
+        "difficulty": "medium",
+        "question": "What are Ansible handlers?",
+        "options": [
+          "Error handling mechanisms",
+          "Tasks that run only when notified by other tasks",
+          "Connection managers",
+          "Backup procedures"
+        ],
+        "correct_answer": 2,
+        "explanation": "Handlers are special tasks that only run when notified by other tasks, typically used for service restarts or configuration reloads when changes occur.",
+        "scenario": "You want to restart a web server only if its configuration file was changed during playbook execution."
+      },
+      {
+        "id": "ansible-005",
+        "topic": "ansible",
+        "difficulty": "hard",
+        "question": "How do you test your Ansible roles and tasks?",
+        "options": [
+          "Testing isn't necessary for Ansible",
+          "Use Molecule for testing roles with various scenarios and platforms",
+          "Only test in production",
+          "Manual testing is sufficient"
+        ],
+        "correct_answer": 2,
+        "explanation": "Molecule provides testing framework for Ansible roles, allowing you to test against different platforms, scenarios, and configurations using Docker, VMs, or cloud instances.",
+        "scenario": "You're developing reusable Ansible roles and need to ensure they work across different operating systems and configurations."
+      },
+      {
+        "id": "azure-004",
+        "topic": "azure",
+        "difficulty": "medium",
+        "question": "What is Azure CDN and when would you use it?",
+        "options": [
+          "A database service",
+          "Content Delivery Network for caching static content globally",
+          "A monitoring service",
+          "A container orchestration platform"
+        ],
+        "correct_answer": 2,
+        "explanation": "Azure CDN caches static content at edge locations worldwide, reducing latency and bandwidth costs while improving user experience for global applications.",
+        "scenario": "Your web application serves users globally and you need to improve page load times for static assets."
+      },
+      {
+        "id": "azure-005",
+        "topic": "azure",
+        "difficulty": "hard",
+        "question": "What's the difference between Azure SQL Database and Azure SQL Managed Instance?",
+        "options": [
+          "They are identical services",
+          "SQL Database is PaaS with limited features, Managed Instance provides near-complete SQL Server compatibility",
+          "Managed Instance is cheaper than SQL Database",
+          "SQL Database only works with .NET applications"
+        ],
+        "correct_answer": 2,
+        "explanation": "Azure SQL Database is a fully managed PaaS with some limitations, while SQL Managed Instance provides near 100% SQL Server compatibility with features like cross-database queries and SQL Agent.",
+        "scenario": "You're migrating a complex on-premises SQL Server application that uses advanced features like linked servers and SQL Agent jobs."
       }
     ]
 }
