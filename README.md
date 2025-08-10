@@ -2,17 +2,17 @@
 
 An interactive CLI tool designed to help you ace your DevOps interviews with real-world scenario-based questions covering all essential topics.
 
-## ✨ Features
+## Features
 
-- 🎯 **Interview-focused questions**: Real scenarios you'll face in DevOps interviews
-- 📚 **Comprehensive coverage**: AWS, Kubernetes, Docker, Linux, Git, Networking, Terraform, CI/CD, Security, Monitoring
-- 🔥 **Multiple difficulty levels**: Easy, Medium, Hard - from junior to senior level questions
-- 🎭 **Interview simulation mode**: Practice like you're in a real interview
-- 📊 **Performance tracking**: See your strengths and areas for improvement
-- 🚀 **Quick practice**: Single questions for rapid learning
-- 🐳 **Docker support**: Run anywhere with Docker
+- **Interview-focused questions**: Real scenarios you'll face in DevOps interviews
+- **Comprehensive coverage**: AWS, Kubernetes, Docker, Linux, Git, Networking, Terraform, CI/CD, Security, Monitoring
+- **Multiple difficulty levels**: Easy, Medium, Hard - from junior to senior level questions
+- **Interview simulation mode**: Practice like you're in a real interview
+- **Performance tracking**: See your strengths and areas for improvement
+- **Quick practice**: Single questions for rapid learning
+- **Docker support**: Run anywhere with Docker
 
-## 🎯 Perfect For
+## Perfect For
 
 - **DevOps Engineers** preparing for interviews
 - **SREs** looking to brush up on fundamentals
@@ -20,7 +20,7 @@ An interactive CLI tool designed to help you ace your DevOps interviews with rea
 - **Students** learning DevOps concepts
 - **Professionals** upskilling in cloud technologies
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Option 1: Docker (Recommended - No installation required!)
 
@@ -124,7 +124,7 @@ devops-ip focus kubernetes
 devops-ip stats
 ```
 
-## 🎭 Interview Simulation Mode
+## Interview Simulation Mode
 
 Experience real interview conditions:
 
