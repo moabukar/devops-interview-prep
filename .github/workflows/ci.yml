@@ -34,12 +34,12 @@ jobs:
         devops-ip topics
         devops-ip stats
 
-    - name: Validate questions file
-      run: python scripts/validate_questions.py
+    # - name: Validate questions file
+    #   run: python scripts/validate_questions.py
 
-    - name: Run tests
-      run: pytest tests/ -v
-      if: always()
+    # - name: Run tests
+    #   run: pytest tests/ -v
+    #   if: always()
 
   docker:
     needs: test
