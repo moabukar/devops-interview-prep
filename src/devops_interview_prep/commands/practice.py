@@ -19,17 +19,37 @@ def practice(topic, difficulty, count, company_type, interview_mode, export):
     if not question_bank.questions:
         click.echo("❌ Error: No questions available")
         return
-    
-    if not topic:
-        topics = question_bank.get_topics()
+
+    topics = question_bank.get_topics()
+
+    lcase_topics = {t.lower(): t for t in topics}
+
+    if topic:
+        # Display error message if incorrect topic provided
+        if topic.lower() not in lcase_topics:
+            click.echo(f"❌ Error: Unknown topic '{topic}'\n")
+            click.echo("📚 Available topics:")
+            for t in topics:
+                topic_question_count = question_bank.get_topic_count(t)
+                click.echo(f"{t} ({topic_question_count} questions)")
+            topic = click.prompt(
+                "\nSelect a topic",
+                type=click.Choice(topics, case_sensitive=False)
+            )
+        else:
+            topic = lcase_topics[topic.lower()]
+    else:
+        # No topic provided
         click.echo("📚 Available topics:")
         for t in topics:
             topic_count = question_bank.get_topic_count(t)
-            click.echo(f"  • {t} ({topic_count} questions)")
-        topic = click.prompt("\nSelect a topic", type=click.Choice(topics, case_sensitive=False))
-    
+            click.echo(f"{t} ({topic_count} questions)")
+        topic = click.prompt(
+            "\nSelect a topic",
+            type=click.Choice(topics, case_sensitive=False)
+        )
+
     questions = question_bank.get_questions(topic, difficulty, count, company_type)
-    
     if not questions:
         click.echo(f"❌ No questions found for the specified criteria")
         return
