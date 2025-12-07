@@ -1826,6 +1826,195 @@
         "correct_answer": 2,
         "explanation": "Azure SQL Database is a fully managed PaaS with some limitations, while SQL Managed Instance provides near 100% SQL Server compatibility with features like cross-database queries and SQL Agent.",
         "scenario": "You're migrating a complex on-premises SQL Server application that uses advanced features like linked servers and SQL Agent jobs."
+      },
+      {
+        "id": "aws-015",
+        "topic": "aws",
+        "difficulty": "easy",
+        "question": "At what OSI layer does a Network Load Balancer operate?",
+        "options": [
+          "Layer 7 (Application)",
+          "Layer 2 (Data Link)",
+          "Layer 4 (Transport)",
+          "Layer 3 (Network)"
+        ],
+        "correct_answer": 3,
+        "explanation": "Network Load Balancers operate at Layer 4 (Transport Layer), handling TCP/UDP traffic with extremely high performance and low latency.",
+        "scenario": "You need to load balance millions of TCP connections per second for a gaming platform."
+      },
+      {
+        "id": "aws-016?",
+        "topic": "aws",
+        "difficulty": "medium",
+        "question": "What is the difference between CloudWatch and CloudTrail",
+        "options": [
+          "CloudWatch is for monitoring and metrics AWS resources, CloudTrail is for auditing API activities in an AWS account",
+          "CloudWatch collects events, CloudTrail collects metrics",
+          "They both do the same thing",
+          "CloudTrail only works with EC2"
+        ],
+        "correct_answer": 1,
+        "explanation": "CloudWatch collects metrics, logs, alarms, and dashboards. CloudTrail records API calls for auditing and governance. At the account or organization level, you can centralize logs using AWS Organizations with aggregation accounts or CloudTrail Organization trails."      },
+      {
+        "id": "aws-017",
+        "topic": "aws",
+        "difficulty": "medium",
+        "question": "How can you upgrade an AMI?",
+        "options": [
+          "Edit the AMI directly",
+          "Run apt-get upgrade on the existing AMI",
+          "AMI upgrades happen automatically",
+          "Launch a new instance, apply updates, create a new AMI, update launch templates"
+        ],
+        "correct_answer": 4,
+        "explanation": "AMIs are immutable. To upgrade, launch an instance from the existing AMI, update it, then create a new AMI."
+      },
+      {
+        "id": "aws-018",
+        "topic": "aws",
+        "difficulty": "medium",
+        "question": "How would you secure an S3 bucket?",
+        "options": [
+          "Enable public read access",
+          "Use IAM policies, block public access, enable encryption, and logging",
+          "Restrict the bucket to have read access only",
+          "Store secrets directly inside files"
+        ],
+        "correct_answer": 2,
+        "explanation": "To secure S3: block public access, apply least-privileged IAM policies, enable encryption, enable logging, and use bucket policies",
+        "scenario": "You must store customer documents in S3 with strict security and auditing requirements."
+      },
+      {
+        "id": "aws-019",
+        "topic": "aws",
+        "difficulty": "easy",
+        "question": "How can you allow an EC2 instance to access an S3 bucket securely?",
+        "options": [
+          "Use access keys hardcoded in the application",
+          "Publicly expose the S3 bucket URL",
+          "Attach an IAM Role to the EC2 instance with correct permissions",
+          "Use SSH tunneling"
+        ],
+        "correct_answer": 3,
+        "explanation": "The correct method is to attach an IAM Role to the EC2 instance with a policy allowing access to the S3 bucket. This avoids storing or rotating credentials manually.",
+        "scenario": "A web application running on EC2 needs to read and write objects in S3."
+      },
+      {
+        "id": "aws-020",
+        "topic": "aws",
+        "difficulty": "medium",
+        "question": "How can two VPCs communicate with each other?",
+        "options": [
+          "Only if they are in the same region",
+          "VPC Peering or Transit Gateway",
+          "They cannot communicate",
+          "Broadcast traffic between them"
+        ],
+        "correct_answer": 2,
+        "explanation": "VPCs can be connected using VPC Peering (point-to-point) or Transit Gateway (hub-and-spoke architecture). Transit Gateway is preferred for multi-VPC environments due to better scalability.",
+        "scenario": "Your application components are deployed in separate VPCs and need to communicate privately."
+      },
+      {
+        "id": "aws-021",
+        "topic": "aws",
+        "difficulty": "easy",
+        "question": "What is an alternative to a NAT Gateway?",
+        "options": [
+          "Direct Internet access on private subnets",
+          "NAT Instance",
+          "S3 Transfer Acceleration",
+          "Internet Gateway"
+        ],
+        "correct_answer": 2,
+        "explanation": "A NAT Instance is the primary alternative to a NAT Gateway. It allows outbound internet access for private subnets, but requires manual scaling and maintenance."      
+      },
+      {
+        "id": "aws-022",
+        "topic": "aws",
+        "difficulty": "easy",
+        "question": "What is EC2 Auto Scaling?",
+        "options": [
+          "A service that backs up EC2 instances",
+          "A feature that automatically adjusts the number of EC2 instances based on demand",
+          "A tool for manually launching EC2 instances",
+          "A monitoring tool for EC2 instance logs"
+        ],
+        "correct_answer": 2,
+        "explanation": "EC2 Auto Scaling automatically adjusts the number of EC2 instances based on load, ensuring performance and cost efficiency. It can scale out during high demand and scale in during low demand.",
+        "scenario": "Your web application experiences traffic spikes during business hours and low usage at night, and you want to optimize performance and costs."
+      },
+      {
+        "id": "aws-023",
+        "topic": "aws",
+        "difficulty": "easy",
+        "question": "What is Amazon ECS?",
+        "options": [
+          "A service that manages AWS billing",
+          "A fully managed container orchestration service for running Docker containers",
+          "A service that hosts virtual machine templates",
+          "A database migration service"
+        ],
+        "correct_answer": 2,
+        "explanation": "Amazon ECS (Elastic Container Service) is a fully managed container orchestration service that allows you to run, manage, and scale Docker containers on AWS using EC2 instances or Fargate."
+      },
+      {
+        "id": "aws-026",
+        "topic": "aws",
+        "difficulty": "easy",
+        "question": "What is the relationship between an AWS Region and an Availability Zone?",
+        "options": [
+          "A Region is a data center and an Availability Zone is a country",
+          "An Availability Zone contains multiple Regions",
+          "A Region is a geographical area that contains multiple isolated Availability Zones",
+          "They are the same and interchangeable"
+        ],
+        "correct_answer": 3,
+        "explanation": "A Region is a geographical area that contains multiple isolated Availability Zones. AZs are separate data centers within the Region, providing high availability and fault tolerance.",
+        "scenario": "You need to deploy a highly available application that must remain online even if a single data center experiences an outage."
+      },
+      {
+        "id": "aws-027",
+        "topic": "aws",
+        "difficulty": "medium",
+        "question": "How can an EC2 instance in a private subnet access the internet or be accessed securely for maintenance?",
+        "options": [
+          "Assign a public IP and connect directly",
+          "Open port 22 to the internet",
+          "Use an S3 bucket as an access point",
+          "Configure a NAT Gateway for outbound access, or use a bastion host for secure inbound access"
+        ],
+        "correct_answer": 4,
+        "explanation": "Instances in private subnets cannot access the internet directly. A NAT Gateway enables outbound traffic, while a bastion host provides secure inbound access for administration."      
+      },
+      {
+        "id": "aws-028",
+        "topic": "aws",
+        "difficulty": "easy",
+        "question": "What is an AWS VPC?",
+        "options": [
+          "A tool for monitoring AWS services",
+          "A managed container orchestration platform",
+          "A virtual network environment where you can launch isolated AWS resources",
+          "A storage service for backing up EC2 instances"
+        ],
+        "correct_answer": 3,
+        "explanation": "A VPC (Virtual Private Cloud) is a virtual network environment that allows you to launch and manage AWS resources in a logically isolated section of the cloud.",
+        "scenario": "You need a private network in AWS to deploy EC2 instances and databases with controlled connectivity."
+      },
+      {
+        "id": "aws-029",
+        "topic": "aws",
+        "difficulty": "easy",
+        "question": "How do subnets work in a VPC?",
+        "options": [
+          "They automatically scale EC2 instances",
+          "They store application data and backups",
+          "They route traffic to the internet directly",
+          "They divide a VPC into smaller IP ranges to organize and isolate resources"
+        ],
+        "correct_answer": 4,
+        "explanation": "Subnets divide a VPC into smaller IP ranges so you can place resources in separate network segments, controlling traffic and improving security and organization.",
+        "scenario": "You want to separate public-facing services from private databases inside your VPC."
       }
     ]
 }
