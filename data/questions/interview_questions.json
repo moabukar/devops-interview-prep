@@ -2059,6 +2059,20 @@
         "correct_answer": 1,
         "explanation": "To handle higher memory requirements for a pod, you need to increase the memory limit in the pod's resource.limits specification. This tells Kubernetes the maximum amount of memory the pod can use.",
         "scenario": "You notice a pod is not running due to OOMKilled status. You realise the configured resources are insufficient and need adjustment."
+      },
+      {
+        "id": "k8s-014",
+        "topic": "kubernetes",
+        "difficulty": "hard",
+        "question": "What is the difference between a container and a pod?",
+        "options": [
+          "a pod can contain multiple containers that share the same network namespace and storage",
+          "a pod is a VM while a container is not",
+          "pods have multiple IP addresses while containers have one",
+          "containers can run on multiple nodes while pods cannot"
+        ],
+        "correct_answer": 1,
+        "explanation": "A pod is the smallest deployable unit in Kubernetes and can contain one or more containers that share the same network namespace and storage volumes. Containers within a pod can communicate with each other using localhost."
       }
     ]
 }
