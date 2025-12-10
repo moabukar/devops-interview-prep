@@ -2016,6 +2016,49 @@
         "correct_answer": 4,
         "explanation": "Subnets divide a VPC into smaller IP ranges so you can place resources in separate network segments, controlling traffic and improving security and organization.",
         "scenario": "You want to separate public-facing services from private databases inside your VPC."
+      },
+      {
+        "id": "k8s-011",
+        "topic": "kubernetes",
+        "difficulty": "medium",
+        "question": "What are the components of the master node in Kubernetes?",
+        "options": [
+          "api-server, kubelet, service, scheduler",
+          "etcd, pod, controller manager, scheduler",
+          "api-server, etcd, controller manager, scheduler",
+          "node agent, kube-proxy, scheduler, container runtime"
+        ],
+        "correct_answer": 3,
+        "explanation": "The master node components include the API server (handles API requests), etcd (stores cluster state), controller manager (manages controllers), and scheduler (assigns pods to nodes)."
+      },
+      {
+        "id": "k8s-012",
+        "topic": "kubernetes",
+        "difficulty": "medium",
+        "question": "What is the purpose of daemonsets in Kubernetes?",
+        "options": [
+          "scales deployments automatically based on load",
+          "exposes pod to external traffic through a specified port",
+          "monitors application within pod to ensure liveness",
+          "ensures all nodes run a copy of a specific pod"
+        ],
+        "correct_answer": 4,
+        "explanation": "DaemonSets ensure that all (or some) nodes run a copy of a specific pod, which is useful for running cluster-wide services like log collection or monitoring agents."
+      },
+      {
+        "id": "k8s-013",
+        "topic": "kubernetes",
+        "difficulty": "hard",
+        "question": "How do you configure the pod to handle higher memory requirements?",
+        "options": [
+          "increase the value of memory in the pod's resource.limits field",
+          "set the memory value in the pod's environment variables",
+          "increase the node's total memory capacity",
+          "add more nodes to the cluster"
+        ],
+        "correct_answer": 1,
+        "explanation": "To handle higher memory requirements for a pod, you need to increase the memory limit in the pod's resource.limits specification. This tells Kubernetes the maximum amount of memory the pod can use.",
+        "scenario": "You notice a pod is not running due to OOMKilled status. You realise the configured resources are insufficient and need adjustment."
       }
     ]
 }
