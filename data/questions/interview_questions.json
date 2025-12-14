@@ -2088,6 +2088,34 @@
         "correct_answer": 2,
         "explanation": "A sidecar container runs alongside the main application container in a pod and provides auxiliary functions such as logging, monitoring, or proxying. It helps to separate concerns and enhance the functionality of the main application without modifying its code.",
         "scenario": "You need to add logging capabilities to an existing application without changing its codebase."
+      },
+      {
+        "id": "k8s-016",
+        "topic": "kubernetes",
+        "difficulty": "easy",
+        "question": "What is the relationship between pods, replicasets, and deployments in Kubernetes?",
+        "options": [
+          "nothing, they are all independent components",
+          "pods manage replicasets which manage deployments",
+          "deployments manage replicasets which manage pods",
+          "replicasets manage deployments which manage pods"
+        ],
+        "correct_answer": 3,
+        "explanation": "Deployments manage ReplicaSets, which in turn manage Pods. Deployments provide declarative updates for Pods and ReplicaSets, allowing for easy scaling and rolling updates of applications."
+      },
+      {
+        "id": "k8s-017",
+        "topic": "kubernetes",
+        "difficulty": "medium",
+        "question": "How do you handle an ImagePullBackOff error in Kubernetes?",
+        "options": [
+          "remove any existing network policies",
+          "ensure you have an ingress controller set up",
+          "make sure the control plane components are healthy",
+          "check if the image name and tag are correct, verify image registry access, and ensure node has network connectivity"
+        ],
+        "correct_answer": 4,
+        "explanation": "To handle an ImagePullBackOff error, you should verify that the image name and tag are correct, check if the node has access to the image registry (including authentication if needed), and ensure that the node has proper network connectivity to reach the registry."
       }
     ]
 }
