@@ -2131,6 +2131,20 @@
         "correct_answer": 3,
         "explanation": "To backup an etcd database in a Kubernetes cluster, you can use the etcdctl command-line tool with the snapshot save command. This creates a snapshot of the etcd data that can be stored in a safe location for recovery purposes.",
         "scenario": "You need to ensure that you have a reliable backup of your cluster's state in case of data corruption or loss."
+      },
+      {
+        "id": "k8s-019",
+        "topic": "kubernetes",
+        "difficulty": "hard",
+        "question": "What is the difference between a configMap and a secret in Kubernetes?",
+        "options": [
+          "secrets are only used for database credentials while configMaps are for application settings",
+          "configMaps are encrypted while secrets are not",
+          "configMaps store non-sensitive data while secrets store sensitive data in an encoded format",
+          "configMaps can only be used with pods while secrets can be used with any resource"
+        ],
+        "correct_answer": 1,
+        "explanation": "ConfigMaps store non-sensitive data while Secrets store sensitive data in an encoded format."
       }
     ]
 }
