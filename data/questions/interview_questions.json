@@ -1843,7 +1843,7 @@
         "scenario": "You need to load balance millions of TCP connections per second for a gaming platform."
       },
       {
-        "id": "aws-016?",
+        "id": "aws-016",
         "topic": "aws",
         "difficulty": "medium",
         "question": "What is the difference between CloudWatch and CloudTrail",
@@ -1854,7 +1854,8 @@
           "CloudTrail only works with EC2"
         ],
         "correct_answer": 1,
-        "explanation": "CloudWatch collects metrics, logs, alarms, and dashboards. CloudTrail records API calls for auditing and governance. At the account or organization level, you can centralize logs using AWS Organizations with aggregation accounts or CloudTrail Organization trails."      },
+        "explanation": "CloudWatch collects metrics, logs, alarms, and dashboards. CloudTrail records API calls for auditing and governance. At the account or organization level, you can centralize logs using AWS Organizations with aggregation accounts or CloudTrail Organization trails."      
+      },
       {
         "id": "aws-017",
         "topic": "aws",
