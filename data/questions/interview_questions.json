@@ -2116,6 +2116,21 @@
         ],
         "correct_answer": 4,
         "explanation": "To handle an ImagePullBackOff error, you should verify that the image name and tag are correct, check if the node has access to the image registry (including authentication if needed), and ensure that the node has proper network connectivity to reach the registry."
+      },
+      {
+        "id": "k8s-018",
+        "topic": "kubernetes",
+        "difficulty": "hard",
+        "question": "How would you backup an etcd database in a Kubernetes cluster?",
+        "options": [
+          "run kubectl export data command and specify etcd as the resource",
+          "exec into your etcd pod and copy all the data files to a safe location",
+          "use the etcdctl snapshot save command to create a backup of the etcd data",
+          "create a persistent volume claim and mount it to the etcd pod for automatic backups"
+        ],
+        "correct_answer": 3,
+        "explanation": "To backup an etcd database in a Kubernetes cluster, you can use the etcdctl command-line tool with the snapshot save command. This creates a snapshot of the etcd data that can be stored in a safe location for recovery purposes.",
+        "scenario": "You need to ensure that you have a reliable backup of your cluster's state in case of data corruption or loss."
       }
     ]
 }
