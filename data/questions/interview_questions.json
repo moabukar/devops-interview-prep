@@ -2135,7 +2135,7 @@
       {
         "id": "k8s-019",
         "topic": "kubernetes",
-        "difficulty": "hard",
+        "difficulty": "easy",
         "question": "What is the difference between a configMap and a secret in Kubernetes?",
         "options": [
           "secrets are only used for database credentials while configMaps are for application settings",
@@ -2145,6 +2145,35 @@
         ],
         "correct_answer": 1,
         "explanation": "ConfigMaps store non-sensitive data while Secrets store sensitive data in an encoded format."
+      },
+      {
+        "id": "k8s-020",
+        "topic": "kubernetes",
+        "difficulty": "medium",
+        "question": "What is helm?",
+        "options": [
+          "a container orchestration tool",
+          "a package manager for Kubernetes",
+          "a container runtime",
+          "a Kubernetes networking solution"
+        ],
+        "correct_answer": 2,
+        "explanation": "Helm is a package manager for Kubernetes that allows you to define, install, and upgrade even the most complex Kubernetes applications."
+      },
+      {
+        "id": "k8s-021",
+        "topic": "kubernetes",
+        "difficulty": "easy",
+        "question": "What are the 3 types of Kubernetes services?",
+        "options": [
+          "clusterIP, nodePort, loadBalancer",
+          "ingress, egress, proxy",
+          "serviceAccount, endpoint, serviceMesh",
+          "coreDNS, nodePort, clusterIP"
+        ],
+        "correct_answer": 1,
+        "explanation": "The three types of Kubernetes services are ClusterIP (default, internal access), NodePort (exposes service on each node's IP at a static port), and LoadBalancer (provisions an external load balancer).",
+        "scenario": "You need to expose your application running in Kubernetes to different types of network access."
       }
     ]
 }
