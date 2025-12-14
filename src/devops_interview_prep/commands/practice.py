@@ -6,15 +6,18 @@ from ..core.question_bank import question_bank
 from ..models.session import InterviewSession
 
 
-@click.command()
+@click.command(context_settings={"ignore_unknown_options": True})
 @click.argument('topic', required=False)
 @click.option('--difficulty', '-d', help='Difficulty level (easy, medium, hard)')
 @click.option('--count', '-c', default=5, help='Number of questions')
 @click.option('--company-type', help='Company type (faang, startup, enterprise)')
 @click.option('--interview-mode', '-i', is_flag=True, help='Interview simulation mode')
 @click.option('--export', help='Export results to JSON file')
-def practice(topic, difficulty, count, company_type, interview_mode, export):
+@click.pass_context
+def practice(ctx, topic, difficulty, count, company_type, interview_mode, export):
     """Practice interview questions by topic"""
+    log = ctx.obj['LOGGER']
+    log.debug(f"Practice called with topic={topic}, difficulty={difficulty}, count={count}, company_type={company_type}, interview_mode={interview_mode}")
     
     if not question_bank.questions:
         click.echo("❌ Error: No questions available")

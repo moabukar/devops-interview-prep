@@ -2,6 +2,7 @@
 """
 DevOps Interview Prep CLI - Main entry point
 """
+from .core.logger import get_logger
 import click
 from .core.config import APP_NAME, VERSION
 
@@ -13,9 +14,14 @@ from .commands.interview import interview
 from .commands.info import stats, topics, quick
 
 
-@click.group()
+@click.group(context_settings=dict(
+        ignore_unknown_options=True,
+        allow_extra_args=True
+))
 @click.version_option(version=VERSION)
-def cli():
+@click.option("--verbose", is_flag=True, help="Enable verbose output")
+@click.pass_context
+def cli(ctx, verbose):
     """🚀 DevOps Interview Prep - Master Your Next DevOps Interview
 
     Practice AWS, Kubernetes, Docker, Linux, Git, Networking, Terraform, CI/CD,
@@ -27,7 +33,15 @@ def cli():
     • Detailed performance analytics
     • Export results for further analysis
     """
-    pass
+    ctx.ensure_object(dict)
+    ctx.obj['VERBOSE'] = verbose
+
+    logger = get_logger(verbose)
+    ctx.obj['LOGGER'] = logger
+
+    logger.debug("Verbose mode is enabled.")
+    logger.debug("CLI initialised successfully")
+
 
 
 # Add all commands to the CLI group

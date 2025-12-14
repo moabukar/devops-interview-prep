@@ -8,10 +8,13 @@ from ..models.session import InterviewSession
 from ..core.config import DEFAULT_REVIEW_COUNT
 
 
-@click.command()
+@click.command(context_settings={"ignore_unknown_options": True})
 @click.option('--count', '-c', default=DEFAULT_REVIEW_COUNT, help='Maximum number of questions to review')
-def review_mistakes(count):
+@click.pass_context
+def review_mistakes(ctx, count):
     """🔄 Review questions you got wrong"""
+    log = ctx.obj['LOGGER']
+    log.debug(f"Review mistakes called with count={count}")
     failed_ids = progress_tracker.get_failed_questions()
     
     if not failed_ids:

@@ -7,13 +7,16 @@ from ..core.question_bank import question_bank
 from ..models.session import InterviewSession
 
 
-@click.command()
+@click.command(context_settings={"ignore_unknown_options": True})
 @click.option('--count', '-c', default=15, help='Number of questions')
 @click.option('--company-type', help='Focus on specific company type')
 @click.option('--duration', help='Time limit (e.g., 45min)')
 @click.option('--export', help='Export interview results to JSON file')
-def interview(count, company_type, duration, export):
+@click.pass_context
+def interview(ctx, count, company_type, duration, export):
     """🎭 Full interview simulation with mixed topics"""
+    log = ctx.obj['LOGGER']
+    log.debug(f"Interview called with count={count}, company_type={company_type}, duration={duration}")
     if not question_bank.questions:
         click.echo("❌ Error: No questions available")
         return

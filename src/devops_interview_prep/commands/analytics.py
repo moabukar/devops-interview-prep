@@ -13,11 +13,14 @@ from ..utils.formatting import (
 )
 
 
-@click.command()
+@click.command(context_settings={"ignore_unknown_options": True})
 @click.option('--topic', help='Show analytics for specific topic')
 @click.option('--export', help='Export analytics to JSON file')
-def analytics(topic, export):
+@click.pass_context
+def analytics(ctx, topic, export):
     """📈 Show detailed performance analytics"""
+    log = ctx.obj['LOGGER']
+    log.debug(f"Analytics called with topic={topic}, export={export}")
     results = progress_tracker.results
     
     if not results:
@@ -78,10 +81,13 @@ def _export_analytics(overall_stats, topic_stats, difficulty_stats, export_file)
         click.echo(f"❌ Error exporting analytics: {e}")
 
 
-@click.command()
-def weak_areas():
+@click.command(context_settings={"ignore_unknown_options": True})
+@click.pass_context
+def weak_areas(ctx):
     """🎯 Show topics where you need more practice"""
     weak_areas = progress_tracker.get_weak_areas()
+    log = ctx.obj['LOGGER']
+    log.debug("Weak areas command called")
     
     if not weak_areas:
         click.echo("📊 No performance data available yet.")

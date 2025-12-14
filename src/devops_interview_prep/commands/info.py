@@ -8,9 +8,12 @@ from ..models.session import InterviewSession
 from ..utils.formatting import print_header
 
 
-@click.command()
-def stats():
+@click.command(context_settings={"ignore_unknown_options": True})
+@click.pass_context
+def stats(ctx):
     """📊 Show question bank and progress statistics"""
+    log = ctx.obj['LOGGER']
+    log.debug("Stats command called")
     if not question_bank.questions:
         click.echo("❌ No questions available")
         return
@@ -48,7 +51,7 @@ def stats():
         click.echo(f"  • Questions remaining: {remaining}")
 
 
-@click.command()
+@click.command(context_settings={"ignore_unknown_options": True})
 def topics():
     """📚 List all available interview topics"""
     topics = question_bank.get_topics()
@@ -70,7 +73,7 @@ def topics():
         click.echo(f"\n🏢 Company types: {', '.join(company_types)}")
 
 
-@click.command()
+@click.command(context_settings={"ignore_unknown_options": True})
 def quick():
     """⚡ Get a single random question for quick practice"""
     if not question_bank.questions:
