@@ -2174,6 +2174,64 @@
         "correct_answer": 1,
         "explanation": "The three types of Kubernetes services are ClusterIP (default, internal access), NodePort (exposes service on each node's IP at a static port), and LoadBalancer (provisions an external load balancer).",
         "scenario": "You need to expose your application running in Kubernetes to different types of network access."
+      },
+      {
+        "id": "k8s-022",
+        "topic": "kubernetes",
+        "difficulty": "easy",
+        "question": "How would you isolate resources and avoid naming conflicts?",
+        "options": [
+          "create separate clusters for each team",
+          "use node affinity to separate resources",
+          "use namespaces to logically separate resources within the same cluster",
+          "label all resources with team names"
+        ],
+        "correct_answer": 3,
+        "explanation": "Namespaces provide isolations within a single Kubernetes cluster, allowing multiple teams or projects to share the same cluster without resource name conflicts.",
+        "scenario": "You're managing a Kubernetes cluster shared by multiple teams working on different projects and need to avoid resource conflicts."
+      },
+      {
+        "id": "k8s-023",
+        "topic": "kubernetes",
+        "difficulty": "medium",
+        "question": "What are PV and a PVCs in Kubernetes?",
+        "options": [
+          "a PV is a pod volume and a PVC is a pod volume claim",
+          "a PV is a persistent volume and a PVC is a persistent volume claim",
+          "PVs are similar to priority classes but for storage and PVCs are similar to resource quotas",
+          "PVs are used for pod networking and PVCs are used for pod security"
+        ],
+        "correct_answer": 2,
+        "explanation": "A Persistent Volume (PV) is a piece of storage in the cluster that has been provisioned by an administrator or dynamically provisioned using Storage Classes. A Persistent Volume Claim (PVC) is a request for storage by a user that specifies size and access modes."
+      },
+      {
+        "id": "k8s-024",
+        "topic": "kubernetes",
+        "difficulty": "hard",
+        "question": "How would you set up a rule where only the backend pod can communicate with the database pod?",
+        "options": [
+          "set up RBAC rules to restrict access between pods",
+          "create a service which exposes the database pod only to the backend pod",
+          "create a NetworkPolicy that allows traffic from the backend pod to the database pod and vice versa",
+          "create a NetworkPolicy that allows traffic from the backend pod to the database pod only"
+        ],
+        "correct_answer": 4,
+        "explanation": "To restrict communication so that only the backend pod can communicate with the database pod, you would create a NetworkPolicy that allows traffic from the backend pod to the database pod only. This ensures that no other pods can access the database pod.",
+        "scenario": "You have a web pod, a backend pod and a database pod and you only want the backend to communicate with the database."
+      },
+      {
+        "id": "k8s-025",
+        "topic": "kubernetes",
+        "difficulty": "hard",
+        "question": "What is the difference between a Role and a ClusterRole in Kubernetes?",
+        "options": [
+          "a Role is for managing pods while a ClusterRole is for managing nodes",
+          "a Role is for managing resources within a specific namespace, while ClusterRoles are for managing resources cluster-wide",
+          "a Role is used for users while a ClusterRole is used for service accounts",
+          "a Role can be used in one cluster while a ClusterRole can be used across multiple clusters"
+        ],
+        "correct_answer": 2,
+        "explanation": "A Role defines permissions within a specific namespace, while a ClusterRole defines permissions that apply across the entire cluster. This allows for more granular access control depending on the scope needed."
       }
     ]
 }
