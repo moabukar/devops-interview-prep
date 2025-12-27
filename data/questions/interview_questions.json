@@ -2020,7 +2020,7 @@
       {
         "id": "k8s-011",
         "topic": "kubernetes",
-        "difficulty": "medium",
+        "difficulty": "easy",
         "question": "What are the components of the master node in Kubernetes?",
         "options": [
           "api-server, kubelet, service, scheduler",
@@ -2140,16 +2140,16 @@
         "options": [
           "secrets are only used for database credentials while configMaps are for application settings",
           "configMaps are encrypted while secrets are not",
-          "configMaps store non-sensitive data while secrets store sensitive data in an encoded format",
+          "configMaps store non-sensitive data while secrets store sensitive data in a base64 encoded format",
           "configMaps can only be used with pods while secrets can be used with any resource"
         ],
-        "correct_answer": 1,
-        "explanation": "ConfigMaps store non-sensitive data while Secrets store sensitive data in an encoded format."
+        "correct_answer": 3,
+        "explanation": "ConfigMaps store non-sensitive data while Secrets store sensitive data in a base64 encoded format."
       },
       {
         "id": "k8s-020",
         "topic": "kubernetes",
-        "difficulty": "medium",
+        "difficulty": "easy",
         "question": "What is helm?",
         "options": [
           "a container orchestration tool",
@@ -2166,7 +2166,7 @@
         "difficulty": "easy",
         "question": "What are the 3 types of Kubernetes services?",
         "options": [
-          "clusterIP, nodePort, loadBalancer",
+          "clusterIP, nodePort, loadBalancer, headless",
           "ingress, egress, proxy",
           "serviceAccount, endpoint, serviceMesh",
           "coreDNS, nodePort, clusterIP"
@@ -2193,7 +2193,7 @@
       {
         "id": "k8s-023",
         "topic": "kubernetes",
-        "difficulty": "medium",
+        "difficulty": "easy",
         "question": "What are PV and a PVCs in Kubernetes?",
         "options": [
           "a PV is a pod volume and a PVC is a pod volume claim",
