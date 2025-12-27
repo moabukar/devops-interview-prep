@@ -2016,6 +2016,222 @@
         "correct_answer": 4,
         "explanation": "Subnets divide a VPC into smaller IP ranges so you can place resources in separate network segments, controlling traffic and improving security and organization.",
         "scenario": "You want to separate public-facing services from private databases inside your VPC."
+      },
+      {
+        "id": "k8s-011",
+        "topic": "kubernetes",
+        "difficulty": "easy",
+        "question": "What are the components of the master node in Kubernetes?",
+        "options": [
+          "api-server, kubelet, service, scheduler",
+          "etcd, pod, controller manager, scheduler",
+          "api-server, etcd, controller manager, scheduler",
+          "node agent, kube-proxy, scheduler, container runtime"
+        ],
+        "correct_answer": 3,
+        "explanation": "The master node components include the API server (handles API requests), etcd (stores cluster state), controller manager (manages controllers), and scheduler (assigns pods to nodes)."
+      },
+      {
+        "id": "k8s-012",
+        "topic": "kubernetes",
+        "difficulty": "medium",
+        "question": "What is the purpose of daemonsets in Kubernetes?",
+        "options": [
+          "scales deployments automatically based on load",
+          "exposes pod to external traffic through a specified port",
+          "monitors application within pod to ensure liveness",
+          "ensures all nodes run a copy of a specific pod"
+        ],
+        "correct_answer": 4,
+        "explanation": "DaemonSets ensure that all (or some) nodes run a copy of a specific pod, which is useful for running cluster-wide services like log collection or monitoring agents."
+      },
+      {
+        "id": "k8s-013",
+        "topic": "kubernetes",
+        "difficulty": "hard",
+        "question": "How do you configure the pod to handle higher memory requirements?",
+        "options": [
+          "increase the value of memory in the pod's resource.limits field",
+          "set the memory value in the pod's environment variables",
+          "increase the node's total memory capacity",
+          "add more nodes to the cluster"
+        ],
+        "correct_answer": 1,
+        "explanation": "To handle higher memory requirements for a pod, you need to increase the memory limit in the pod's resource.limits specification. This tells Kubernetes the maximum amount of memory the pod can use.",
+        "scenario": "You notice a pod is not running due to OOMKilled status. You realise the configured resources are insufficient and need adjustment."
+      },
+      {
+        "id": "k8s-014",
+        "topic": "kubernetes",
+        "difficulty": "hard",
+        "question": "What is the difference between a container and a pod?",
+        "options": [
+          "a pod can contain multiple containers that share the same network namespace and storage",
+          "a pod is a VM while a container is not",
+          "pods have multiple IP addresses while containers have one",
+          "containers can run on multiple nodes while pods cannot"
+        ],
+        "correct_answer": 1,
+        "explanation": "A pod is the smallest deployable unit in Kubernetes and can contain one or more containers that share the same network namespace and storage volumes. Containers within a pod can communicate with each other using localhost."
+      },
+      {
+        "id": "k8s-015",
+        "topic": "kubernetes",
+        "difficulty": "medium",
+        "question": "What is a sidecar container and when would you use one?",
+        "options": [
+          "a container that runs on the host OS",
+          "a container that runs alongside the main application container in a pod to provide auxiliary functions",
+          "a container that is used for testing purposes only",
+          "a container that is deployed in a separate pod for load balancing"
+        ],
+        "correct_answer": 2,
+        "explanation": "A sidecar container runs alongside the main application container in a pod and provides auxiliary functions such as logging, monitoring, or proxying. It helps to separate concerns and enhance the functionality of the main application without modifying its code.",
+        "scenario": "You need to add logging capabilities to an existing application without changing its codebase."
+      },
+      {
+        "id": "k8s-016",
+        "topic": "kubernetes",
+        "difficulty": "easy",
+        "question": "What is the relationship between pods, replicasets, and deployments in Kubernetes?",
+        "options": [
+          "nothing, they are all independent components",
+          "pods manage replicasets which manage deployments",
+          "deployments manage replicasets which manage pods",
+          "replicasets manage deployments which manage pods"
+        ],
+        "correct_answer": 3,
+        "explanation": "Deployments manage ReplicaSets, which in turn manage Pods. Deployments provide declarative updates for Pods and ReplicaSets, allowing for easy scaling and rolling updates of applications."
+      },
+      {
+        "id": "k8s-017",
+        "topic": "kubernetes",
+        "difficulty": "medium",
+        "question": "How do you handle an ImagePullBackOff error in Kubernetes?",
+        "options": [
+          "remove any existing network policies",
+          "ensure you have an ingress controller set up",
+          "make sure the control plane components are healthy",
+          "check if the image name and tag are correct, verify image registry access, and ensure node has network connectivity"
+        ],
+        "correct_answer": 4,
+        "explanation": "To handle an ImagePullBackOff error, you should verify that the image name and tag are correct, check if the node has access to the image registry (including authentication if needed), and ensure that the node has proper network connectivity to reach the registry."
+      },
+      {
+        "id": "k8s-018",
+        "topic": "kubernetes",
+        "difficulty": "hard",
+        "question": "How would you backup an etcd database in a Kubernetes cluster?",
+        "options": [
+          "run kubectl export data command and specify etcd as the resource",
+          "exec into your etcd pod and copy all the data files to a safe location",
+          "use the etcdctl snapshot save command to create a backup of the etcd data",
+          "create a persistent volume claim and mount it to the etcd pod for automatic backups"
+        ],
+        "correct_answer": 3,
+        "explanation": "To backup an etcd database in a Kubernetes cluster, you can use the etcdctl command-line tool with the snapshot save command. This creates a snapshot of the etcd data that can be stored in a safe location for recovery purposes.",
+        "scenario": "You need to ensure that you have a reliable backup of your cluster's state in case of data corruption or loss."
+      },
+      {
+        "id": "k8s-019",
+        "topic": "kubernetes",
+        "difficulty": "easy",
+        "question": "What is the difference between a configMap and a secret in Kubernetes?",
+        "options": [
+          "secrets are only used for database credentials while configMaps are for application settings",
+          "configMaps are encrypted while secrets are not",
+          "configMaps store non-sensitive data while secrets store sensitive data in a base64 encoded format",
+          "configMaps can only be used with pods while secrets can be used with any resource"
+        ],
+        "correct_answer": 3,
+        "explanation": "ConfigMaps store non-sensitive data while Secrets store sensitive data in a base64 encoded format."
+      },
+      {
+        "id": "k8s-020",
+        "topic": "kubernetes",
+        "difficulty": "easy",
+        "question": "What is helm?",
+        "options": [
+          "a container orchestration tool",
+          "a package manager for Kubernetes",
+          "a container runtime",
+          "a Kubernetes networking solution"
+        ],
+        "correct_answer": 2,
+        "explanation": "Helm is a package manager for Kubernetes that allows you to define, install, and upgrade even the most complex Kubernetes applications."
+      },
+      {
+        "id": "k8s-021",
+        "topic": "kubernetes",
+        "difficulty": "easy",
+        "question": "What are the 5 types of Kubernetes services?",
+        "options": [
+          "clusterIP, nodePort, loadBalancer, headless, ExternalName",
+          "ingress, egress, proxy, reverseProxy, gateway",
+          "serviceAccount, endpoint, serviceMesh, clusterIP, LoadBalancer",
+          "coreDNS, nodePort, clusterIP, headless, loadBalancer"
+        ],
+        "correct_answer": 1,
+        "explanation": "The five types of Kubernetes services are ClusterIP (default, internal access), NodePort (exposes service on each node's IP at a static port), LoadBalancer (provisions an external load balancer), Headless (returns DNS records for pods directly), and ExternalName (maps service to an external DNS name).",
+        "scenario": "You need to expose your application running in Kubernetes to different types of network access."
+      },
+      {
+        "id": "k8s-022",
+        "topic": "kubernetes",
+        "difficulty": "easy",
+        "question": "How would you isolate resources and avoid naming conflicts?",
+        "options": [
+          "create separate clusters for each team",
+          "use node affinity to separate resources",
+          "use namespaces to logically separate resources within the same cluster",
+          "label all resources with team names"
+        ],
+        "correct_answer": 3,
+        "explanation": "Namespaces provide isolations within a single Kubernetes cluster, allowing multiple teams or projects to share the same cluster without resource name conflicts.",
+        "scenario": "You're managing a Kubernetes cluster shared by multiple teams working on different projects and need to avoid resource conflicts."
+      },
+      {
+        "id": "k8s-023",
+        "topic": "kubernetes",
+        "difficulty": "easy",
+        "question": "What are PV and a PVCs in Kubernetes?",
+        "options": [
+          "a PV is a pod volume and a PVC is a pod volume claim",
+          "a PV is a persistent volume and a PVC is a persistent volume claim",
+          "PVs are similar to priority classes but for storage and PVCs are similar to resource quotas",
+          "PVs are used for pod networking and PVCs are used for pod security"
+        ],
+        "correct_answer": 2,
+        "explanation": "A Persistent Volume (PV) is a piece of storage in the cluster that has been provisioned by an administrator or dynamically provisioned using Storage Classes. A Persistent Volume Claim (PVC) is a request for storage by a user that specifies size and access modes."
+      },
+      {
+        "id": "k8s-024",
+        "topic": "kubernetes",
+        "difficulty": "hard",
+        "question": "How would you set up a rule where only the backend pod can communicate with the database pod?",
+        "options": [
+          "set up RBAC rules to restrict access between pods",
+          "create a service which exposes the database pod only to the backend pod",
+          "create a NetworkPolicy that allows traffic from the backend pod to the database pod and vice versa",
+          "create a NetworkPolicy that allows traffic from the backend pod to the database pod only"
+        ],
+        "correct_answer": 4,
+        "explanation": "To restrict communication so that only the backend pod can communicate with the database pod, you would create a NetworkPolicy that allows traffic from the backend pod to the database pod only. This ensures that no other pods can access the database pod.",
+        "scenario": "You have a web pod, a backend pod and a database pod and you only want the backend to communicate with the database."
+      },
+      {
+        "id": "k8s-025",
+        "topic": "kubernetes",
+        "difficulty": "hard",
+        "question": "What is the difference between a Role and a ClusterRole in Kubernetes?",
+        "options": [
+          "a Role is for managing pods while a ClusterRole is for managing nodes",
+          "a Role is for managing resources within a specific namespace, while ClusterRoles are for managing resources cluster-wide",
+          "a Role is used for users while a ClusterRole is used for service accounts",
+          "a Role can be used in one cluster while a ClusterRole can be used across multiple clusters"
+        ],
+        "correct_answer": 2,
+        "explanation": "A Role defines permissions within a specific namespace, while a ClusterRole defines permissions that apply across the entire cluster. This allows for more granular access control depending on the scope needed."
       }
     ]
 }
