@@ -13,12 +13,17 @@ from ..models.session import InterviewSession
 @click.option('--company-type', help='Company type (faang, startup, enterprise)')
 @click.option('--interview-mode', '-i', is_flag=True, help='Interview simulation mode')
 @click.option('--export', help='Export results to JSON file')
+@click.option('--sync', is_flag=True, help='Sync with Tech Vault before starting')
 @click.pass_context
-def practice(ctx, topic, difficulty, count, company_type, interview_mode, export):
+def practice(ctx, topic, difficulty, count, company_type, interview_mode, export, sync):
     """Practice interview questions by topic"""
     log = ctx.obj['LOGGER']
     log.debug(f"Practice called with topic={topic}, difficulty={difficulty}, count={count}, company_type={company_type}, interview_mode={interview_mode}")
     
+    if sync:
+        question_bank.sync_tech_vault()
+        log.debug(f"Question bank reloaded. New total: {len(question_bank.questions)}")
+
     if not question_bank.questions:
         click.echo("❌ Error: No questions available")
         return
