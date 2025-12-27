@@ -13,7 +13,7 @@ from ..models.session import InterviewSession
 @click.option('--company-type', help='Company type (faang, startup, enterprise)')
 @click.option('--interview-mode', '-i', is_flag=True, help='Interview simulation mode')
 @click.option('--export', help='Export results to JSON file')
-@click.option('--sync', is_flag=True, help='Sync with Tech Vault before starting')
+@click.option('--sync', is_flag=True, help='Sync with tech-vault before starting')
 @click.pass_context
 def practice(ctx, topic, difficulty, count, company_type, interview_mode, export, sync):
     """Practice interview questions by topic"""
