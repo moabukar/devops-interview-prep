@@ -2164,15 +2164,15 @@
         "id": "k8s-021",
         "topic": "kubernetes",
         "difficulty": "easy",
-        "question": "What are the 3 types of Kubernetes services?",
+        "question": "What are the 5 types of Kubernetes services?",
         "options": [
-          "clusterIP, nodePort, loadBalancer, headless",
-          "ingress, egress, proxy",
-          "serviceAccount, endpoint, serviceMesh",
-          "coreDNS, nodePort, clusterIP"
+          "clusterIP, nodePort, loadBalancer, headless, ExternalName",
+          "ingress, egress, proxy, reverseProxy, gateway",
+          "serviceAccount, endpoint, serviceMesh, clusterIP, LoadBalancer",
+          "coreDNS, nodePort, clusterIP, headless, loadBalancer"
         ],
         "correct_answer": 1,
-        "explanation": "The three types of Kubernetes services are ClusterIP (default, internal access), NodePort (exposes service on each node's IP at a static port), and LoadBalancer (provisions an external load balancer).",
+        "explanation": "The five types of Kubernetes services are ClusterIP (default, internal access), NodePort (exposes service on each node's IP at a static port), LoadBalancer (provisions an external load balancer), Headless (returns DNS records for pods directly), and ExternalName (maps service to an external DNS name).",
         "scenario": "You need to expose your application running in Kubernetes to different types of network access."
       },
       {
