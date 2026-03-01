@@ -38,7 +38,7 @@ PROGRESS_DIR = Path.home() / ".devops-ip"
 PROGRESS_FILE = PROGRESS_DIR / "progress.json"
 
 # Progress tracking settings
-MIN_ATTEMPTS_FOR_WEAK_AREAS = 3
+MIN_ATTEMPTS_FOR_WEAK_AREAS = 1
 MAX_WEAK_AREAS_SHOWN = 5
 DEFAULT_REVIEW_COUNT = 10
 
