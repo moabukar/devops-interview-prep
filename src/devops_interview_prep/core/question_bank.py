@@ -70,6 +70,10 @@ class InterviewQuestionBank:
         if not filtered:
             return []
         
+        # When fetching by specific IDs, return all matches (don't sample)
+        if question_ids:
+            return filtered
+        
         return py_random.sample(filtered, min(count, len(filtered)))
     
     def get_topics(self) -> List[str]:
