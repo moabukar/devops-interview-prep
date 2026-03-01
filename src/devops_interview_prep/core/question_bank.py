@@ -22,7 +22,7 @@ class InterviewQuestionBank:
     def load_questions(self):
         """Load interview questions from JSON file"""
         if not self.questions_file.exists():
-            click.echo(f"❌ Error: Questions file not found: {self.questions_file}")
+            click.echo(f"Error: Questions file not found: {self.questions_file}")
             return
         
         try:
@@ -45,9 +45,9 @@ class InterviewQuestionBank:
                 )
                 self.questions.append(question)
             
-            click.echo(f"✅ Loaded {len(self.questions)} interview questions")
+            click.echo(f"Loaded {len(self.questions)} interview questions")
         except Exception as e:
-            click.echo(f"❌ Error loading questions: {e}")
+            click.echo(f"Error loading questions: {e}")
     
     def get_questions(self, topic: Optional[str] = None, difficulty: Optional[str] = None, 
                      count: int = 1, company_type: Optional[str] = None,

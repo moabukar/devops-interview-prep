@@ -29,10 +29,10 @@ class InterviewSession:
         click.echo("\n" + "="*70)
         
         if question.scenario:
-            click.echo(f"📋 Scenario: {question.scenario}")
+            click.echo(f"Scenario: {question.scenario}")
             click.echo()
         
-        click.echo(f"❓ Question: {question.question}")
+        click.echo(f"Question: {question.question}")
         click.echo()
         
         # Randomize answer options to make it more challenging
@@ -91,7 +91,7 @@ class InterviewSession:
         click.echo(f"💡 Explanation: {question.explanation}")
         
         if question.real_world_context:
-            click.echo(f"🌍 Real-world context: {question.real_world_context}")
+            click.echo(f"Real-world context: {question.real_world_context}")
         
         # Save progress
         if self.track_progress:
@@ -115,18 +115,18 @@ class InterviewSession:
         percentage = (self.score / self.total * 100) if self.total > 0 else 0
         
         click.echo("\n" + "="*50)
-        click.echo("📊 SESSION SUMMARY")
+        click.echo("SESSION SUMMARY")
         click.echo("="*50)
         click.echo(f"Score: {self.score}/{self.total} ({percentage:.1f}%)")
         click.echo(f"Duration: {format_duration(total_secs)}")
         
         if self.topic_performance:
-            click.echo("\n📈 Performance by Topic:")
+            click.echo("\nPerformance by Topic:")
             for topic, perf in sorted(self.topic_performance.items()):
                 topic_pct = (perf['correct'] / perf['total'] * 100) if perf['total'] > 0 else 0
                 click.echo(f"  {topic}: {perf['correct']}/{perf['total']} ({topic_pct:.0f}%)")
         
-        click.echo(f"\n🎯 Assessment:")
+        click.echo(f"\nAssessment:")
         click.echo(format_assessment(percentage))
     
     def export_results(self, filename: str):
@@ -148,6 +148,6 @@ class InterviewSession:
             
             with open(filename, 'w') as f:
                 json.dump(export_data, f, indent=2, default=str)
-            click.echo(f"📄 Results exported to {filename}")
+            click.echo(f"Results exported to {filename}")
         except Exception as e:
-            click.echo(f"❌ Error exporting results: {e}")
+            click.echo(f"Error exporting results: {e}")

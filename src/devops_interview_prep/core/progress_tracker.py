@@ -58,7 +58,7 @@ class ProgressTracker:
                     for r in self.results
                 ], f, indent=2)
         except Exception as e:
-            click.echo(f"⚠️  Warning: Could not save progress: {e}")
+            click.echo(f"Warning: Could not save progress: {e}")
     
     def get_weak_areas(self) -> List[Tuple[str, float]]:
         """Get topics with lowest success rates"""
