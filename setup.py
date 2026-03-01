@@ -21,7 +21,7 @@ setup(
     description="Interactive DevOps Interview Preparation CLI Tool",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/moabukar/devops-interview-prep",
+    url="https://github.com/moabukar/mockops",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 4 - Beta",

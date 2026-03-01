@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: devops-interview-prep:latest
+    image: mockops:latest
     container_name: devops-ip-cli
     volumes:
       # Mount progress data to persist between runs
@@ -27,7 +27,7 @@ services:
       context: .
       dockerfile: Dockerfile
       target: builder
-    image: devops-interview-prep:dev
+    image: mockops:dev
     container_name: devops-ip-dev
     volumes:
       - .:/app
@@ -44,7 +44,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: devops-interview-prep:test
+    image: mockops:test
     container_name: devops-ip-test
     volumes:
       - .:/app

@@ -109,7 +109,7 @@ jobs:
           ### 🍺 Homebrew
           ```bash
           brew tap moabukar/tap
-          brew install devops-interview-prep
+          brew install mockops
           ```
           
           ### 🎯 Quick Start

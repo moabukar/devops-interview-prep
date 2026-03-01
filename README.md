@@ -2,21 +2,21 @@
 
 Interactive CLI tool for DevOps interview preparation. 190+ scenario-based questions across 12 topics, with difficulty tracking and mock interviews.
 
-[![Build Status](https://github.com/moabukar/devops-interview-prep/workflows/CI/badge.svg)](https://github.com/moabukar/devops-interview-prep/actions)
-[![Docker Pulls](https://img.shields.io/docker/pulls/moabukar/devops-interview-prep)](https://hub.docker.com/r/moabukar/devops-interview-prep)
+[![Build Status](https://github.com/moabukar/mockops/workflows/CI/badge.svg)](https://github.com/moabukar/mockops/actions)
+[![Docker Pulls](https://img.shields.io/docker/pulls/moabukar/mockops)](https://hub.docker.com/r/moabukar/mockops)
 
 ## Quick Start
 
 ```bash
 # Homebrew
 brew tap moabukar/tap
-brew install devops-interview-prep
+brew install mockops
 
 # Docker
 docker run -it --rm moabukar/mockops practice aws
 
 # pip
-pip install git+https://github.com/moabukar/devops-interview-prep.git
+pip install git+https://github.com/moabukar/mockops.git
 mockops practice aws --count 10
 ```
 

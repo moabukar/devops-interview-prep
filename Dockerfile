@@ -3,8 +3,8 @@ FROM python:3.11-slim
 LABEL maintainer="moabukar"
 LABEL description="MockOps - Master Your Next DevOps Interview"
 LABEL version="1.2.0"
-LABEL org.opencontainers.image.source="https://github.com/moabukar/devops-interview-prep"
-LABEL org.opencontainers.image.documentation="https://github.com/moabukar/devops-interview-prep/blob/main/README.md"
+LABEL org.opencontainers.image.source="https://github.com/moabukar/mockops"
+LABEL org.opencontainers.image.documentation="https://github.com/moabukar/mockops/blob/main/README.md"
 LABEL org.opencontainers.image.licenses="MIT"
 
 ENV PYTHONUNBUFFERED=1 \
