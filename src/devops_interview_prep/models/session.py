@@ -83,8 +83,10 @@ class InterviewSession:
             self.topic_performance[question.topic]['correct'] += 1
             click.echo("✅ Correct!")
         else:
+            chosen_text = shuffled_options[answer - 1]
             correct_answer_text = original_options[original_correct_answer - 1]
-            click.echo(f"❌ Incorrect. Correct answer: {correct_answer_text}")
+            click.echo(f"❌ Incorrect. You chose: {chosen_text}")
+            click.echo(f"✅ Correct answer: {correct_answer_text}")
         
         click.echo(f"💡 Explanation: {question.explanation}")
         
