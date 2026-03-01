@@ -18,20 +18,20 @@ from ..utils.formatting import (
 @click.option('--export', help='Export analytics to JSON file')
 @click.pass_context
 def analytics(ctx, topic, export):
-    """📈 Show detailed performance analytics"""
+    """Show detailed performance analytics"""
     log = ctx.obj['LOGGER']
     log.debug(f"Analytics called with topic={topic}, export={export}")
     results = progress_tracker.results
     
     if not results:
-        click.echo("📊 No performance data available yet.")
-        click.echo("💡 Practice some questions first to see your analytics!")
+        click.echo("No performance data available yet.")
+        click.echo("Practice some questions first to see your analytics.")
         return
     
     if topic:
         results = [r for r in results if r.topic.lower() == topic.lower()]
         if not results:
-            click.echo(f"❌ No data found for topic: {topic}")
+            click.echo(f"No data found for topic: {topic}")
             return
     
     # Get overall statistics
@@ -76,29 +76,28 @@ def _export_analytics(overall_stats, topic_stats, difficulty_stats, export_file)
     try:
         with open(export_file, 'w') as f:
             json.dump(analytics_data, f, indent=2)
-        click.echo(f"\n📄 Analytics exported to {export_file}")
+        click.echo(f"\nAnalytics exported to {export_file}")
     except Exception as e:
-        click.echo(f"❌ Error exporting analytics: {e}")
+        click.echo(f"Error exporting analytics: {e}")
 
 
 @click.command(context_settings={"ignore_unknown_options": True})
 @click.pass_context
 def weak_areas(ctx):
-    """🎯 Show topics where you need more practice"""
+    """Show topics where you need more practice"""
     weak_areas = progress_tracker.get_weak_areas()
     log = ctx.obj['LOGGER']
     log.debug("Weak areas command called")
     
     if not weak_areas:
-        click.echo("📊 No performance data available yet.")
-        click.echo("💡 Practice some questions first to see your weak areas!")
+        click.echo("No performance data available yet.")
+        click.echo("Practice some questions first to see your weak areas.")
         
         # Suggest starting with a popular topic
         if question_bank.questions:
             topics = question_bank.get_topics()
             suggested_topic = topics[0] if topics else None
             if suggested_topic and click.confirm(f"\nStart practicing {suggested_topic}?"):
-                # Import here to avoid circular imports
                 from .practice import practice
                 ctx = click.get_current_context()
                 ctx.invoke(practice, topic=suggested_topic, count=5)
@@ -107,9 +106,8 @@ def weak_areas(ctx):
     print_weak_areas_list(weak_areas)
     
     if weak_areas:
-        click.echo(f"\n💡 Recommendation: Focus on {weak_areas[0][0]}")
+        click.echo(f"\nRecommendation: Focus on {weak_areas[0][0]}")
         if click.confirm(f"Practice {weak_areas[0][0]} questions now?"):
-            # Import here to avoid circular imports
             from .practice import practice
             ctx = click.get_current_context()
             ctx.invoke(practice, topic=weak_areas[0][0], count=5)

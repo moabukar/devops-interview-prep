@@ -14,24 +14,24 @@ from ..models.session import InterviewSession
 @click.option('--export', help='Export interview results to JSON file')
 @click.pass_context
 def interview(ctx, count, company_type, duration, export):
-    """🎭 Full interview simulation with mixed topics"""
+    """Full interview simulation with mixed topics"""
     log = ctx.obj['LOGGER']
     log.debug(f"Interview called with count={count}, company_type={company_type}, duration={duration}")
     if not question_bank.questions:
-        click.echo("❌ Error: No questions available")
+        click.echo("Error: No questions available")
         return
     
     all_questions = question_bank.questions
     if company_type:
         tagged = [q for q in all_questions if company_type.lower() in [tag.lower() for tag in (q.company_tags or [])]]
         if not tagged:
-            click.echo(f"⚠️  No questions tagged for '{company_type}'. Using all questions instead.")
+            click.echo(f"Warning: No questions tagged for '{company_type}'. Using all questions instead.")
         else:
             all_questions = tagged
     
     if len(all_questions) < count:
         count = len(all_questions)
-        click.echo(f"⚠️  Adjusted to {count} questions (all available)")
+        click.echo(f"Adjusted to {count} questions (all available)")
     
     selected_questions = py_random.sample(all_questions, count)
     
@@ -50,16 +50,16 @@ def interview(ctx, count, company_type, duration, export):
     
     click.echo(f"\n📊 Question distribution:")
     for topic, cnt in sorted(topic_dist.items()):
-        click.echo(f"  • {topic}: {cnt}")
+        click.echo(f"  {topic}: {cnt}")
     
-    if not click.confirm("\n🚀 Ready to begin your interview?"):
+    if not click.confirm("\nReady to begin your interview?"):
         return
     
     session = InterviewSession()
     
     for i, question in enumerate(selected_questions, 1):
-        click.echo(f"\n🎯 Interview Question {i}/{count}")
-        click.echo(f"📚 Topic: {question.topic} | 📊 Difficulty: {question.difficulty}")
+        click.echo(f"\nInterview Question {i}/{count}")
+        click.echo(f"Topic: {question.topic} | Difficulty: {question.difficulty}")
         session.ask_question(question)
     
     session.show_summary()

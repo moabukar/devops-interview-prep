@@ -40,8 +40,6 @@ requires-python = ">=3.8"
 dependencies = [
     "click>=8.0.0",
     "colorama>=0.4.4",
-    "rich>=10.0.0",  # For better terminal formatting
-    "pydantic>=1.8.0",  # For data validation
 ]
 
 [project.optional-dependencies]
@@ -85,7 +83,7 @@ package-dir = {"" = "src"}
 where = ["src"]
 
 [tool.setuptools.package-data]
-devops_interview_prep = ["py.typed"]
+devops_interview_prep = ["py.typed", "data/questions/*.json"]
 
 # Black configuration
 [tool.black]

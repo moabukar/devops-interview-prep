@@ -11,25 +11,28 @@ VERSION = "1.2.0"
 # Smart path detection for questions file
 def _get_questions_file_path():
     """
-    Smart path detection that works both locally and in Docker container
+    Smart path detection that works locally, in Docker, and via pip/brew install
     """
-    # Possible locations for the questions file
+    _pkg_dir = Path(__file__).parent.parent  # devops_interview_prep/
     possible_paths = [
-        # Local development (from project root)
-        "data/questions/interview_questions.json",
+        # Bundled with package (pip install -e . or pip install .)
+        _pkg_dir / "data" / "questions" / "interview_questions.json",
+        # Relative from package source root (dev checkout)
+        _pkg_dir.parent.parent / "data" / "questions" / "interview_questions.json",
         # Docker container
-        "/app/data/questions/interview_questions.json",
+        Path("/app/data/questions/interview_questions.json"),
+        # Homebrew share directory
+        Path("/usr/local/share/mockops/data/questions/interview_questions.json"),
+        Path("/opt/homebrew/share/mockops/data/questions/interview_questions.json"),
         # Relative from current working directory
-        "./data/questions/interview_questions.json",
-        # Relative from package directory
-        Path(__file__).parent.parent.parent.parent / "data" / "questions" / "interview_questions.json"
+        Path("data/questions/interview_questions.json"),
     ]
     
     for path in possible_paths:
-        if os.path.exists(path):
+        if path.exists():
             return str(path)
     
-    # Fallback to default relative path
+    # Fallback to relative path
     return "data/questions/interview_questions.json"
 
 # File paths

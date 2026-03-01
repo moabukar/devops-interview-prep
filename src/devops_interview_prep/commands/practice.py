@@ -20,7 +20,7 @@ def practice(ctx, topic, difficulty, count, company_type, interview_mode, export
     log.debug(f"Practice called with topic={topic}, difficulty={difficulty}, count={count}, company_type={company_type}, interview_mode={interview_mode}")
     
     if not question_bank.questions:
-        click.echo("❌ Error: No questions available")
+        click.echo("Error: No questions available")
         return
 
     topics = question_bank.get_topics()
@@ -30,8 +30,8 @@ def practice(ctx, topic, difficulty, count, company_type, interview_mode, export
     if topic:
         # Display error message if incorrect topic provided
         if topic.lower() not in lcase_topics:
-            click.echo(f"❌ Error: Unknown topic '{topic}'\n")
-            click.echo("📚 Available topics:")
+            click.echo(f"Error: Unknown topic '{topic}'\n")
+            click.echo("Available topics:")
             for t in topics:
                 topic_question_count = question_bank.get_topic_count(t)
                 click.echo(f"{t} ({topic_question_count} questions)")
@@ -43,7 +43,7 @@ def practice(ctx, topic, difficulty, count, company_type, interview_mode, export
             topic = lcase_topics[topic.lower()]
     else:
         # No topic provided
-        click.echo("📚 Available topics:")
+        click.echo("Available topics:")
         for t in topics:
             topic_count = question_bank.get_topic_count(t)
             click.echo(f"{t} ({topic_count} questions)")
@@ -53,12 +53,12 @@ def practice(ctx, topic, difficulty, count, company_type, interview_mode, export
         )
 
     if company_type and not question_bank.get_company_types():
-        click.echo(f"⚠️  --company-type filtering is not yet supported (no questions are tagged). Ignoring filter.")
+        click.echo(f"Warning: --company-type filtering is not yet supported (no questions are tagged). Ignoring filter.")
         company_type = None
 
     questions = question_bank.get_questions(topic, difficulty, count, company_type)
     if not questions:
-        click.echo(f"❌ No questions found for the specified criteria")
+        click.echo(f"No questions found for the specified criteria")
         return
     
     click.echo(f"\n🎯 Starting practice: {topic.upper()}")
@@ -71,7 +71,7 @@ def practice(ctx, topic, difficulty, count, company_type, interview_mode, export
     session = InterviewSession()
     
     for i, question in enumerate(questions, 1):
-        click.echo(f"\n📋 Question {i}/{len(questions)} | {question.difficulty.upper()}")
+        click.echo(f"\nQuestion {i}/{len(questions)} | {question.difficulty.upper()}")
         session.ask_question(question)
         
         if interview_mode and i < len(questions):
