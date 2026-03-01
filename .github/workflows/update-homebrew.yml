@@ -27,8 +27,11 @@ jobs:
         VERSION="${{ steps.release.outputs.VERSION }}"
         SHA256="${{ steps.release.outputs.SHA256 }}"
         
+        # Update the formula URL (only the mockops archive URL, not resource URLs)
         sed -i "s|url \"https://github.com/moabukar/mockops/archive/refs/tags/.*\"|url \"https://github.com/moabukar/mockops/archive/refs/tags/${VERSION}.tar.gz\"|" Formula/mockops.rb
-        sed -i "s|sha256 \".*\"|sha256 \"${SHA256}\"|" Formula/mockops.rb
+        
+        # Update only the first sha256 (the formula's hash, not resource hashes)
+        sed -i "0,/sha256 \"[a-f0-9]\{64\}\"/s|sha256 \"[a-f0-9]\{64\}\"|sha256 \"${SHA256}\"|" Formula/mockops.rb
         
         echo "Updated formula to ${VERSION} with sha256 ${SHA256}"
         cat Formula/mockops.rb
