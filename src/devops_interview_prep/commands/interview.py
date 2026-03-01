@@ -23,7 +23,11 @@ def interview(ctx, count, company_type, duration, export):
     
     all_questions = question_bank.questions
     if company_type:
-        all_questions = [q for q in all_questions if company_type.lower() in [tag.lower() for tag in (q.company_tags or [])]]
+        tagged = [q for q in all_questions if company_type.lower() in [tag.lower() for tag in (q.company_tags or [])]]
+        if not tagged:
+            click.echo(f"⚠️  No questions tagged for '{company_type}'. Using all questions instead.")
+        else:
+            all_questions = tagged
     
     if len(all_questions) < count:
         count = len(all_questions)

@@ -83,8 +83,10 @@ class InterviewSession:
             self.topic_performance[question.topic]['correct'] += 1
             click.echo("✅ Correct!")
         else:
+            chosen_text = shuffled_options[answer - 1]
             correct_answer_text = original_options[original_correct_answer - 1]
-            click.echo(f"❌ Incorrect. Correct answer: {correct_answer_text}")
+            click.echo(f"❌ Incorrect. You chose: {chosen_text}")
+            click.echo(f"✅ Correct answer: {correct_answer_text}")
         
         click.echo(f"💡 Explanation: {question.explanation}")
         
@@ -109,13 +111,14 @@ class InterviewSession:
     def show_summary(self):
         """Show interview session summary"""
         duration = datetime.now() - self.start_time
+        total_secs = int(duration.total_seconds())
         percentage = (self.score / self.total * 100) if self.total > 0 else 0
         
         click.echo("\n" + "="*50)
         click.echo("📊 SESSION SUMMARY")
         click.echo("="*50)
         click.echo(f"Score: {self.score}/{self.total} ({percentage:.1f}%)")
-        click.echo(f"Duration: {format_duration(duration.seconds)}")
+        click.echo(f"Duration: {format_duration(total_secs)}")
         
         if self.topic_performance:
             click.echo("\n📈 Performance by Topic:")
