@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-DevOps Interview Prep CLI - Main entry point
+MockOps CLI - Master Your Next DevOps Interview
 """
 from .core.logger import get_logger
 import click
@@ -23,12 +23,12 @@ from .commands.reset import reset
 @click.option("--verbose", is_flag=True, help="Enable verbose output")
 @click.pass_context
 def cli(ctx, verbose):
-    """🚀 DevOps Interview Prep - Master Your Next DevOps Interview
+    """🚀 MockOps - Master Your Next DevOps Interview
 
     Practice AWS, Kubernetes, Docker, Linux, Git, Networking, Terraform, CI/CD,
     Security, and Monitoring with real interview questions!
     
-    💡 New Features:
+    💡 Features:
     • Progress tracking and weak area identification
     • Review missed questions
     • Detailed performance analytics

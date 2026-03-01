@@ -5,8 +5,8 @@ import os
 from pathlib import Path
 
 # Application info
-APP_NAME = "DevOps Interview Prep"
-VERSION = "1.1.0"
+APP_NAME = "MockOps"
+VERSION = "1.2.0"
 
 # Smart path detection for questions file
 def _get_questions_file_path():
@@ -34,7 +34,7 @@ def _get_questions_file_path():
 
 # File paths
 DEFAULT_QUESTIONS_FILE = _get_questions_file_path()
-PROGRESS_DIR = Path.home() / ".devops-ip"
+PROGRESS_DIR = Path.home() / ".mockops"
 PROGRESS_FILE = PROGRESS_DIR / "progress.json"
 
 # Progress tracking settings

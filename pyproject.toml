@@ -3,8 +3,8 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "devops-interview-prep"
-version = "1.1.0"
+name = "mockops"
+version = "1.2.0"
 description = "Master Your Next DevOps Interview - Interactive CLI practice tool for AWS, Kubernetes, Docker, and more"
 readme = "README.md"
 license = {file = "LICENSE"}
@@ -70,15 +70,13 @@ docs = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/yourusername/devops-interview-prep"
-Documentation = "https://devops-interview-prep.readthedocs.io/"
-Repository = "https://github.com/yourusername/devops-interview-prep"
-Issues = "https://github.com/yourusername/devops-interview-prep/issues"
-Changelog = "https://github.com/yourusername/devops-interview-prep/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/moabukar/devops-interview-prep"
+Repository = "https://github.com/moabukar/devops-interview-prep"
+Issues = "https://github.com/moabukar/devops-interview-prep/issues"
 
 [project.scripts]
+mockops = "devops_interview_prep.cli:cli"
 devops-ip = "devops_interview_prep.cli:cli"
-devops-interview-prep = "devops_interview_prep.cli:cli"
 
 [tool.setuptools]
 package-dir = {"" = "src"}

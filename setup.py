@@ -14,8 +14,8 @@ except FileNotFoundError:
     requirements = ["click>=8.0.0", "colorama>=0.4.4"]
 
 setup(
-    name="devops-interview-prep",
-    version="1.0.0",
+    name="mockops",
+    version="1.2.0",
     author="DevOps Interview Prep",
     author_email="hello@devopsip.io",
     description="Interactive DevOps Interview Preparation CLI Tool",
@@ -41,7 +41,8 @@ setup(
     install_requires=requirements,
     entry_points={
         "console_scripts": [
-            "devops-ip=devops_ip.cli:cli",
+            "mockops=devops_interview_prep.cli:cli",
+            "devops-ip=devops_interview_prep.cli:cli",
         ],
     },
     keywords="devops, interview, preparation, cli, aws, kubernetes, docker, terraform, cicd",

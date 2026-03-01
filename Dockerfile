@@ -1,8 +1,8 @@
 FROM python:3.11-slim
 
 LABEL maintainer="moabukar"
-LABEL description="DevOps Interview Prep CLI - Master Your Next DevOps Interview"
-LABEL version="1.1.0"
+LABEL description="MockOps - Master Your Next DevOps Interview"
+LABEL version="1.2.0"
 LABEL org.opencontainers.image.source="https://github.com/moabukar/devops-interview-prep"
 LABEL org.opencontainers.image.documentation="https://github.com/moabukar/devops-interview-prep/blob/main/README.md"
 LABEL org.opencontainers.image.licenses="MIT"
@@ -38,7 +38,7 @@ COPY setup.py ./
 
 RUN pip install --no-cache-dir -e .
 
-RUN mkdir -p /home/devops-interviewer/.devops-ip && \
+RUN mkdir -p /home/devops-interviewer/.mockops && \
     chown -R devops-interviewer:devops-interviewer /app /home/devops-interviewer
 
 USER devops-interviewer
@@ -46,7 +46,7 @@ USER devops-interviewer
 WORKDIR /home/devops-interviewer
 
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD devops-ip --version || exit 1
+    CMD mockops --version || exit 1
 
-ENTRYPOINT ["devops-ip"]
+ENTRYPOINT ["mockops"]
 CMD ["--help"]
