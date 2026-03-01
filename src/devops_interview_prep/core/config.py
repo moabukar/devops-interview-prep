@@ -6,7 +6,7 @@ from pathlib import Path
 
 # Application info
 APP_NAME = "MockOps"
-VERSION = "1.2.0"
+VERSION = "1.2.1"
 
 # Smart path detection for questions file
 def _get_questions_file_path():
