@@ -1,0 +1,42 @@
+name: Update Homebrew Tap
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  update-tap:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Get release info
+      id: release
+      run: |
+        VERSION="${GITHUB_REF#refs/tags/}"
+        echo "VERSION=${VERSION}" >> $GITHUB_OUTPUT
+        SHA=$(curl -sL "https://github.com/moabukar/mockops/archive/refs/tags/${VERSION}.tar.gz" | sha256sum | cut -d' ' -f1)
+        echo "SHA256=${SHA}" >> $GITHUB_OUTPUT
+
+    - name: Checkout homebrew-tap
+      uses: actions/checkout@v4
+      with:
+        repository: moabukar/homebrew-tap
+        token: ${{ secrets.TAP_GITHUB_TOKEN }}
+
+    - name: Update formula
+      run: |
+        VERSION="${{ steps.release.outputs.VERSION }}"
+        SHA256="${{ steps.release.outputs.SHA256 }}"
+        
+        sed -i "s|url \"https://github.com/moabukar/mockops/archive/refs/tags/.*\"|url \"https://github.com/moabukar/mockops/archive/refs/tags/${VERSION}.tar.gz\"|" Formula/mockops.rb
+        sed -i "s|sha256 \".*\"|sha256 \"${SHA256}\"|" Formula/mockops.rb
+        
+        echo "Updated formula to ${VERSION} with sha256 ${SHA256}"
+        cat Formula/mockops.rb
+
+    - name: Commit and push
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git add Formula/mockops.rb
+        git commit -m "Update mockops to ${{ steps.release.outputs.VERSION }}"
+        git push
