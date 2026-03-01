@@ -12,6 +12,7 @@ from .commands.analytics import analytics, weak_areas
 from .commands.review import review_mistakes
 from .commands.interview import interview
 from .commands.info import stats, topics, quick
+from .commands.reset import reset
 
 
 @click.group(context_settings=dict(
@@ -53,6 +54,7 @@ cli.add_command(interview)
 cli.add_command(stats)
 cli.add_command(topics)
 cli.add_command(quick)
+cli.add_command(reset)
 
 
 if __name__ == '__main__':

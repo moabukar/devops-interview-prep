@@ -52,6 +52,10 @@ def practice(ctx, topic, difficulty, count, company_type, interview_mode, export
             type=click.Choice(topics, case_sensitive=False)
         )
 
+    if company_type and not question_bank.get_company_types():
+        click.echo(f"⚠️  --company-type filtering is not yet supported (no questions are tagged). Ignoring filter.")
+        company_type = None
+
     questions = question_bank.get_questions(topic, difficulty, count, company_type)
     if not questions:
         click.echo(f"❌ No questions found for the specified criteria")
