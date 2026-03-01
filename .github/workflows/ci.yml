@@ -8,7 +8,7 @@ on:
     branches: [ main ]
 
 env:
-  IMAGE_NAME: moabukar/devops-interview-prep
+  IMAGE_NAME: moabukar/mockops
 
 jobs:
   test:
@@ -30,9 +30,9 @@ jobs:
 
     - name: Test CLI works
       run: |
-        devops-ip --help
-        devops-ip topics
-        devops-ip stats
+        mockops --help
+        mockops topics
+        mockops stats
 
     # - name: Validate questions file
     #   run: python scripts/validate_questions.py
@@ -97,18 +97,24 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ steps.version.outputs.VERSION }}
-        release_name: DevOps Interview Prep ${{ steps.version.outputs.VERSION }}
+        release_name: MockOps ${{ steps.version.outputs.VERSION }}
         body: |
-          ## 🚀 DevOps Interview Prep ${{ steps.version.outputs.VERSION }}
+          ## 🚀 MockOps ${{ steps.version.outputs.VERSION }}
           
           ### 🐳 Docker
           ```bash
-          docker run -it --rm moabukar/devops-interview-prep:${{ steps.version.outputs.VERSION }} practice aws
+          docker run -it --rm moabukar/mockops:${{ steps.version.outputs.VERSION }} practice aws
+          ```
+          
+          ### 🍺 Homebrew
+          ```bash
+          brew tap moabukar/tap
+          brew install mockops
           ```
           
           ### 🎯 Quick Start
           ```bash
-          devops-ip practice aws
-          devops-ip interview --count 15
-          devops-ip weak-areas
+          mockops practice aws
+          mockops interview --count 15
+          mockops weak-areas
           ```

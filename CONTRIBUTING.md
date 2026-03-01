@@ -5,8 +5,8 @@ Thank you for your interest in contributing! This project helps thousands of pro
 ## Quick Start
 
 ```bash
-git clone https://github.com/moabukar/devops-interview-prep.git
-cd devops-interview-prep
+git clone https://github.com/moabukar/mockops.git
+cd mockops
 make setup  # Install dependencies and pre-commit hooks
 make test   # Verify everything works
 ```

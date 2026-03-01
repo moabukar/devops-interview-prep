@@ -7,7 +7,7 @@ PIP := pip
 PACKAGE_NAME := devops_interview_prep
 SRC_DIR := src/devops_interview_prep
 VERSION := $(shell git describe --tags --always --dirty 2>/dev/null || echo "dev")
-IMAGE_NAME := moabukar/devops-interview-prep
+IMAGE_NAME := moabukar/mockops
 
 # Colors for output
 BLUE := \033[36m
@@ -38,7 +38,7 @@ install-tools: ## Install development tools globally
 
 setup: clean install-dev install-pre-commit ## Complete development setup
 	@echo "$(GREEN)✓ Development environment ready!$(RESET)"
-	@echo "Try: $(BLUE)make test$(RESET) or $(BLUE)devops-ip practice aws$(RESET)"
+	@echo "Try: $(BLUE)make test$(RESET) or $(BLUE)mockops practice aws$(RESET)"
 
 install-pre-commit: ## Install pre-commit hooks
 	pre-commit install --install-hooks
@@ -119,17 +119,17 @@ docker-test: ## Test Docker image functionality
 
 docker-run: ## Run Docker container interactively
 	docker run -it --rm \
-		-v devops-ip-data:/home/devops-interviewer/.devops-ip \
+		-v mockops-data:/home/devops-interviewer/.mockops \
 		$(IMAGE_NAME):latest
 
 docker-practice: ## Run practice session in Docker
 	docker run -it --rm \
-		-v devops-ip-data:/home/devops-interviewer/.devops-ip \
+		-v mockops-data:/home/devops-interviewer/.mockops \
 		$(IMAGE_NAME):latest practice aws -c 3
 
 docker-shell: ## Get shell access to container
 	docker run -it --rm \
-		-v devops-ip-data:/home/devops-interviewer/.devops-ip \
+		-v mockops-data:/home/devops-interviewer/.mockops \
 		$(IMAGE_NAME):latest bash
 
 ## ========================================
@@ -222,7 +222,7 @@ release-check: clean check validate-questions docker-build docker-test ## Pre-re
 
 demo: ## Run a quick demo
 	@echo "$(BLUE)Running demo...$(RESET)"
-	devops-ip topics || echo "$(YELLOW)Run 'make install-dev' first$(RESET)"
+	mockops topics || echo "$(YELLOW)Run 'make install-dev' first$(RESET)"
 
 demo-docker: ## Run demo in Docker
 	docker run --rm $(IMAGE_NAME):latest topics
@@ -233,7 +233,7 @@ status: ## Show project status
 	@echo "Git status: $(shell git status --porcelain | wc -l | tr -d ' ') files changed"
 	@echo "Version: $(VERSION)"
 	@echo "Python: $(shell $(PYTHON) --version)"
-	@echo "Questions: $(shell devops-ip stats 2>/dev/null | grep "Total questions" | cut -d: -f2 || echo "Unknown")"
+	@echo "Questions: $(shell mockops stats 2>/dev/null | grep "Total questions" | cut -d: -f2 || echo "Unknown")"
 
 debug: ## Debug common issues
 	@echo "$(BLUE)Debugging...$(RESET)"
@@ -242,14 +242,14 @@ debug: ## Debug common issues
 	@$(PYTHON) -c "from $(PACKAGE_NAME).core.question_bank import question_bank; print('✓ Question bank OK')" 2>/dev/null || echo "❌ Question bank import failed"
 	@$(PYTHON) -c "from $(PACKAGE_NAME).cli import cli; print('✓ CLI OK')" 2>/dev/null || echo "❌ CLI import failed"
 	@echo "2. Testing CLI:"
-	@devops-ip --help >/dev/null 2>&1 && echo "✓ CLI command works" || echo "❌ CLI command failed"
+	@mockops --help >/dev/null 2>&1 && echo "✓ CLI command works" || echo "❌ CLI command failed"
 
 ## ========================================
 ## 📊 Utilities
 ## ========================================
 
 question-stats: ## Show question bank statistics
-	devops-ip stats
+	mockops stats
 
 logs: ## Show recent git logs
 	git log --oneline -10

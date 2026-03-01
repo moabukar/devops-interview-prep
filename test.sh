@@ -5,7 +5,7 @@
 #        ./devops-ip.sh topics
 #        ./devops-ip.sh interview --count 10
 
-IMAGE="moabukar/devops-interview-prep:latest"
+IMAGE="moabukar/mockops:latest"
 PLATFORM="linux/arm64"  # change to linux/amd64 if needed
 
 echo "🔄 Pulling latest DevOps Interview Prep image..."
